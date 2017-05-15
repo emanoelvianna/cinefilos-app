@@ -1,4 +1,4 @@
-package br.com.cinefilos.persistencia;
+package br.com.cinefilos.persistencia.conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
