@@ -17,11 +17,19 @@
 </head>
 
 <body>
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2 flex="" md-truncate="">Cinefilos-app</h2>
-        </div>
-    </md-toolbar>
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Cinefilos-app</h1>
+        </md-toolbar>
+        <md-content layout-padding>
+            <md-button ng-click="close()" class="md-primary">
+                Cadastrar sessão
+            </md-button>
+        </md-content>
+
+    </md-sidenav>
 
 </body>
 
