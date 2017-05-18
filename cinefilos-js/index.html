@@ -14,23 +14,38 @@
 
     <!-- dependencias aplicacao  -->
     <script src="aplicacao/module.js"></script>
+    <script src="aplicacao/controller/home-controller.js"></script>
+    <script src="aplicacao/controller/menu-controller.js"></script>
+
 </head>
 
 <body>
+    <div ng-controller="HomeController" layout="column" ng-cloak>
+        <section layout="row" flex>
+            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
 
-    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools">Cinefilos-app</h1>
+                </md-toolbar>
+                <md-content ng-controller="MenuController">
+                    <md-button ng-click="CadastrarSessao()" class="md-primary">
+                        Cadastrar sessão
+                    </md-button>
+                    <md-button ng-click="close()" class="md-primary">
+                        Vender ingresso
+                    </md-button>
+                </md-content>
 
-        <md-toolbar class="md-theme-indigo">
-            <h1 class="md-toolbar-tools">Cinefilos-app</h1>
-        </md-toolbar>
-        <md-content layout-padding>
-            <md-button ng-click="close()" class="md-primary">
-                Cadastrar sessão
-            </md-button>
-        </md-content>
-
-    </md-sidenav>
-
+            </md-sidenav>
+            <md-content flex layout-padding>
+                <div layout="column" layout-align="top center">
+                    <p>
+                        Campo para formulário de cadastro.
+                    </p>
+                </div>
+            </md-content>
+        </section>
+    </div>
 </body>
 
 </html>
