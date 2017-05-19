@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="cinefilos.Models.Poltronas">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="cinefilos.Models.Poltronas.Status_Poltrona" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Poltronas.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAACAAgAAABAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Models\Poltronas.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Room" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Cinefilos.Models.Filmes">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACQBAAAAAIAEAAAAAAAAIAABAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Models\Filmes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cinefilos.Models.Generos">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAABAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Generos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="cinefilos.Models.Rooms">
+    <Position X="5.5" Y="3" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="cinefilos.Models.Rooms.Status" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Rooms.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAAEAAAAAAAAAAQAAAAAAIAAAABAAAAAAAAEAAAg=</HashCode>
+      <FileName>Models\Rooms.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

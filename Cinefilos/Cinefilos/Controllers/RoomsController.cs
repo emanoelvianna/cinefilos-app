@@ -47,16 +47,16 @@ namespace Cinefilos.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Max_qt,Fileira,Lugares,Sts")] Rooms rooms)
+        public ActionResult Create([Bind(Include = "Id,Nome,Fileira,Lugares,Sts")] Rooms rooms)
         {
             if (ModelState.IsValid)
             {
                 db.Rooms.Add(rooms);
                 db.SaveChanges();
 
-               // RedirectToAction("Createp", "Poltronas", new { id_r = rooms.Id, f = rooms.Fileira, l = rooms.Lugares });
+                return RedirectToAction("Createp", "Poltronas", new { id_r = rooms.Id, f = rooms.Fileira, l = rooms.Lugares });
 
-                return RedirectToAction("Index");
+               // return RedirectToAction("Index");
             }
 
             return View(rooms);
@@ -82,16 +82,16 @@ namespace Cinefilos.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Max_qt,Fileira,Lugares,Sts")] Rooms rooms)
+        public ActionResult Edit([Bind(Include = "Id,Nome,Fileira,Lugares,Sts")] Rooms rooms)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(rooms).State = EntityState.Modified;
                 db.SaveChanges();
 
-                
+                return RedirectToAction("Createp", "Poltronas", new { id_r = rooms.Id, f = rooms.Fileira, l = rooms.Lugares });
 
-                return RedirectToAction("Index");
+               // return RedirectToAction("Index");
             }
             return View(rooms);
         }

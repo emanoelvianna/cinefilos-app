@@ -17,11 +17,8 @@ namespace cinefilos.Models
         [Required]
         [Display(Name = "Nome da sala")]
         public string Nome { get; set; }
-
-        [Required]
-        [Display(Name = "Quantidade maxima de Lugares")]
-        public int Max_qt { get; set; }
-
+        //[Display(Name = "Quantidade maxima de Lugares")]
+       // public int Max_qt { get; set; }
         [Required]
         [Display(Name = "Fileiras")]
         public int Fileira { get; set; }
