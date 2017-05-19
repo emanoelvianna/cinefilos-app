@@ -54,7 +54,7 @@ namespace Cinefilos.Controllers
                 db.Rooms.Add(rooms);
                 db.SaveChanges();
 
-                return RedirectToAction("Createp", "Poltronas", new { id_r = rooms.Id, f = rooms.Fileira, l = rooms.Lugares });
+                return RedirectToAction("Create_by_room", "Poltronas", new { id_r = rooms.Id, f = rooms.Fileira, l = rooms.Lugares });
 
                // return RedirectToAction("Index");
             }
@@ -89,7 +89,7 @@ namespace Cinefilos.Controllers
                 db.Entry(rooms).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Createp", "Poltronas", new { id_r = rooms.Id, f = rooms.Fileira, l = rooms.Lugares });
+                return RedirectToAction("Create_by_room", "Poltronas", new { id_r = rooms.Id, f = rooms.Fileira, l = rooms.Lugares });
 
                // return RedirectToAction("Index");
             }
@@ -121,6 +121,8 @@ namespace Cinefilos.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+       
 
         protected override void Dispose(bool disposing)
         {
