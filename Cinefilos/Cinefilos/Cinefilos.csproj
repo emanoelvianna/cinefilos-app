@@ -331,8 +331,11 @@
     <Content Include="Views\Sessoes\Details.cshtml" />
     <Content Include="Views\Sessoes\Edit.cshtml" />
     <Content Include="Views\Sessoes\Index.cshtml" />
+    <Content Include="Views\Role\ControleDeUsuarios.cshtml" />
+    <Content Include="Views\Role\listRoles.cshtml" />
+    <Content Include="Views\Role\ManageUserRoles.cshtml" />
+    <Content Include="Views\Role\Create2.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -23,16 +23,6 @@ namespace cinefilos.Models
         public int Id_sala { get; set; }
         public virtual Salas Sala { get; set; }
 
-        //public static implicit operator Poltronas(int v)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Poltronas() { }
-
-        //public Poltronas(int i)
-        //{
-        //    num = i;    
-        //}
+       
     }
 }

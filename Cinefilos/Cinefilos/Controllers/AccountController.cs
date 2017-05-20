@@ -159,9 +159,10 @@ namespace Cinefilos.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await this.UserManager.AddToRoleAsync(user.Id, "Administrador");
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                  
-                        await this.UserManager.AddToRoleAsync(user.Id, model.Name);
+                      
                   
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar um email com este link

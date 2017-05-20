@@ -15,9 +15,7 @@ namespace Cinefilos.Models
         public DbSet<Generos> Generos { get; set; }
         public DbSet<Poltronas> Poltronas { get; set; }
         public DbSet<Sessao> Sessao { get; set; }
-
-
-
+        
     }
 
 }
