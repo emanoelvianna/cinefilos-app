@@ -1,0 +1,72 @@
+﻿@model Cinefilos.Models.Sessao
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Sessao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Filme.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Filme.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horario_i)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horario_i)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horario_f)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horario_f)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duracao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duracao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

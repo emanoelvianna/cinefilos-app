@@ -1,0 +1,90 @@
+﻿@model Cinefilos.Models.Sessao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sessao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Filme.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Filme.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sala.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sala.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horario_i)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horario_i)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horario_f)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horario_f)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duracao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duracao)
+        </dd>
+
+
+
+    </dl>
+    <dl class="dl-horizontal">
+        <table>
+            <tr>
+                <th>Poltrona</th>
+                <th>Status</th>
+            </tr>
+            @foreach (var x in ViewBag.p)
+            {
+              
+                <tr>
+                    <th>@x.Nome_p</th>
+                    <th>@x.Status</th>
+                </tr>
+            }
+        </table>
+
+
+
+</dl>
+
+
+
+</div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id_sessao }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

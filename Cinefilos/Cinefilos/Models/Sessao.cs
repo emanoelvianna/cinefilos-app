@@ -29,6 +29,7 @@ namespace Cinefilos.Models
 
         public DateTime Duracao { get; set; }
 
+      
 
     }
 }
