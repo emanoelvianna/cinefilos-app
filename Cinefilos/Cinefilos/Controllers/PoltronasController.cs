@@ -18,7 +18,8 @@ namespace Cinefilos.Controllers
         // GET: Poltronas
         public ActionResult Index()
         {
-            return View(db.Poltronas.ToList());
+            var poltronas = db.Poltronas.Include(p => p.Sala);
+            return View(poltronas.ToList());
         }
 
         // GET: Poltronas/Details/5
@@ -36,13 +37,24 @@ namespace Cinefilos.Controllers
             return View(poltronas);
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        //
+
         // GET: Poltronas/Create
         public ActionResult Create_all()
         {
             Drop_all_chars();
             CinemadbContext contx = new CinemadbContext();
             var pol = new List<Poltronas>();
-            var x = db.Rooms;
+            var x = db.Salas;
             if (ModelState.IsValid)
             {
                 char f = 'a';
@@ -56,7 +68,7 @@ namespace Cinefilos.Controllers
                             pol.Add(new Poltronas
                             {
                                 Id = t,
-                                Id_room = y.Id,
+                                Id_sala = y.Id_sala,
                                 Nome_p = f + j.ToString(),
                             }
                             );
@@ -79,7 +91,7 @@ namespace Cinefilos.Controllers
 
             CinemadbContext contx = new CinemadbContext();
             var pol = new List<Poltronas>();
-            var sala = db.Rooms.Find(id_r);
+            var sala = db.Salas.Find(id_r);
             var fileira = sala.Fileira;
             var lugar = sala.Lugares;
             char s = 'a';
@@ -106,7 +118,7 @@ namespace Cinefilos.Controllers
                         pol.Add(new Poltronas
                         {
                             Id = id,
-                            Id_room = sala.Id,
+                            Id_sala = sala.Id_sala,
                             Nome_p = s + j.ToString(),
                         });
                         id++;
@@ -128,17 +140,18 @@ namespace Cinefilos.Controllers
         }
 
 
+
+
         public ActionResult Delete_all()
         {
             Drop_all_chars();
             return RedirectToAction("Index");
         }
 
-
         protected void Drop_chars_room(int id)
         {
             CinemadbContext context = new CinemadbContext();
-            context.Poltronas.RemoveRange(context.Poltronas.Where(x => x.Id_room == id).Select(x => x));
+            context.Poltronas.RemoveRange(context.Poltronas.Where(x => x.Id_sala == id).Select(x => x));
             context.SaveChanges();
         }
         protected void Drop_all_chars()
@@ -147,92 +160,5 @@ namespace Cinefilos.Controllers
             context.Poltronas.RemoveRange(context.Poltronas.Select(x => x));
             context.SaveChanges();
         }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
-
-// POST: Poltronas/Create
-// Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-// obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-//[HttpPost]
-//[ValidateAntiForgeryToken]
-//public ActionResult Create(Poltronas poltronas)
-//{
-//    poltronas = new Poltronas();
-//    //var x = db.Rooms;
-
-
-//    //if (ModelState.IsValid)
-//    //{
-//    //    char f = 'a';
-//    //    foreach (var y in x)
-//    //    {
-//    //        poltronas.Id_room = y.Id;
-//    //        for (var i = 0; i < y.Fileira; i++)
-//    //        {
-
-//    //            for (var j = 0; j < y.Lugares; j++)
-//    //            {
-//    //                poltronas.Nome_p = f + j.ToString();
-//    //                db.Poltronas.Add(poltronas);
-//    //                db.SaveChangesAsync();
-
-//    //            }
-//    //            f++;
-
-//    //        }
-
-
-//    //    }
-
-//    //return RedirectToAction("Index");
-//    //}
-//    //if (ModelState.IsValid)
-//    //{
-//    //    db.Poltronas.Add(poltronas);
-//    //    db.SaveChanges();
-//    //    return RedirectToAction("Index");
-//    //}
-
-//    return View();
-//}
-
-//// GET: Poltronas/Edit/5
-//public ActionResult Edit(int? id)
-//{
-//    if (id == null)
-//    {
-//        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-//    }
-//    Poltronas poltronas = db.Poltronas.Find(id);
-//    if (poltronas == null)
-//    {
-//        return HttpNotFound();
-//    }
-//    return View(poltronas);
-//}
-
-//// POST: Poltronas/Edit/5
-//// Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-//// obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-//[HttpPost]
-//[ValidateAntiForgeryToken]
-//public ActionResult Edit([Bind(Include = "Id,Id_room")] Poltronas poltronas)
-//{
-//    if (ModelState.IsValid)
-//    {
-//        db.Entry(poltronas).State = EntityState.Modified;
-//        db.SaveChanges();
-//        return RedirectToAction("Index");
-//    }
-//    return View(poltronas);
-//}
-
-// GET: Poltronas/Delete/5

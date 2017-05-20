@@ -1,4 +1,4 @@
-﻿@model IEnumerable<cinefilos.Models.Rooms>
+﻿@model IEnumerable<cinefilos.Models.Salas>
 
 @{
     ViewBag.Title = "Index";
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.Id_sala)
         </th>
 
         <th>
@@ -36,7 +36,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Id)
+            @Html.DisplayFor(modelItem => item.Id_sala)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
@@ -52,9 +52,9 @@
             @Html.DisplayFor(modelItem => item.Sts)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_sala }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_sala }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_sala })
         </td>
     </tr>
 }

@@ -11,113 +11,113 @@ using cinefilos.Models;
 
 namespace Cinefilos.Controllers
 {
-    public class RoomsController : Controller
+    public class SalasController : Controller
     {
         private CinemadbContext db = new CinemadbContext();
 
-        // GET: Rooms
+        // GET: Salas
         public ActionResult Index()
         {
-            return View(db.Rooms.ToList());
+            return View(db.Salas.ToList());
         }
 
-        // GET: Rooms/Details/5
+        // GET: Salas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rooms rooms = db.Rooms.Find(id);
-            if (rooms == null)
+            Salas Salas = db.Salas.Find(id);
+            if (Salas == null)
             {
                 return HttpNotFound();
             }
-            return View(rooms);
+            return View(Salas);
         }
 
-        // GET: Rooms/Create
+        // GET: Salas/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Rooms/Create
+        // POST: Salas/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Fileira,Lugares,Sts")] Rooms rooms)
+        public ActionResult Create([Bind(Include = "Id,Nome,Fileira,Lugares,Sts")] Salas Salas)
         {
             if (ModelState.IsValid)
             {
-                db.Rooms.Add(rooms);
+                db.Salas.Add(Salas);
                 db.SaveChanges();
 
-                return RedirectToAction("Create_by_room", "Poltronas", new { id_r = rooms.Id, f = rooms.Fileira, l = rooms.Lugares });
+                return RedirectToAction("Create_by_room", "Poltronas", new { id_r = Salas.Id_sala, f = Salas.Fileira, l = Salas.Lugares });
 
                // return RedirectToAction("Index");
             }
 
-            return View(rooms);
+            return View(Salas);
         }
 
-        // GET: Rooms/Edit/5
+        // GET: Salas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rooms rooms = db.Rooms.Find(id);
-            if (rooms == null)
+            Salas Salas = db.Salas.Find(id);
+            if (Salas == null)
             {
                 return HttpNotFound();
             }
-            return View(rooms);
+            return View(Salas);
         }
 
-        // POST: Rooms/Edit/5
+        // POST: Salas/Edit/5
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Fileira,Lugares,Sts")] Rooms rooms)
+        public ActionResult Edit([Bind(Include = "Id_sala,Nome,Fileira,Lugares,Sts")] Salas Salas)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(rooms).State = EntityState.Modified;
+                db.Entry(Salas).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Create_by_room", "Poltronas", new { id_r = rooms.Id, f = rooms.Fileira, l = rooms.Lugares });
+                return RedirectToAction("Create_by_room", "Poltronas", new { id_r = Salas.Id_sala, f = Salas.Fileira, l = Salas.Lugares });
 
                // return RedirectToAction("Index");
             }
-            return View(rooms);
+            return View(Salas);
         }
 
-        // GET: Rooms/Delete/5
+        // GET: Salas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rooms rooms = db.Rooms.Find(id);
-            if (rooms == null)
+            Salas Salas = db.Salas.Find(id);
+            if (Salas == null)
             {
                 return HttpNotFound();
             }
-            return View(rooms);
+            return View(Salas);
         }
 
-        // POST: Rooms/Delete/5
+        // POST: Salas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Rooms rooms = db.Rooms.Find(id);
-            db.Rooms.Remove(rooms);
+            Salas Salas = db.Salas.Find(id);
+            db.Salas.Remove(Salas);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

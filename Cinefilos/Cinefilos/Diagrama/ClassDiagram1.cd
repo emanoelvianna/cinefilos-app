@@ -34,18 +34,18 @@
       <FileName>Models\Generos.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="cinefilos.Models.Rooms">
+  <Class Name="cinefilos.Models.Salas">
     <Position X="5.5" Y="3" Width="1.5" />
     <NestedTypes>
-      <Enum Name="cinefilos.Models.Rooms.Status" Collapsed="true">
+      <Enum Name="cinefilos.Models.Salas.Status" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>Models\Rooms.cs</NewMemberFileName>
+          <NewMemberFileName>Models\Salas.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAACAAEAAAAAAAAAAQAAAAAAIAAAABAAAAAAAAEAAAg=</HashCode>
-      <FileName>Models\Rooms.cs</FileName>
+      <FileName>Models\Salas.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

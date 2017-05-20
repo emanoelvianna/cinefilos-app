@@ -1,18 +1,22 @@
-﻿using System;
+﻿using Cinefilos.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace cinefilos.Models
 {
-    public class Rooms
+    public class Salas
+
     {
 
-        public enum Status { open, close, on_cleaning }
+        public enum Status { ABERTA, FECHADA, EM_USO}
 
         [Key]
-        public int Id { get; set; }
+        [Column("Id_sala")]
+        public int Id_sala { get; set; }
 
         [Required]
         [Display(Name = "Nome da sala")]
@@ -33,8 +37,9 @@ namespace cinefilos.Models
         [Display(Name = "Lista de Poltronas")]
         public virtual ICollection<Poltronas> Poltronas { get; set; }
 
+        public virtual ICollection<Sessao> Sessao { get; set; }
 
-        //public Rooms(int max) {
+        //public Salas(int max) {
         //    list_poltrona = new List<Poltronas>(Max_qt);
         //    for (var i = 0; i < max; i++) {
         //        list_poltrona.Add(new Poltronas(i));

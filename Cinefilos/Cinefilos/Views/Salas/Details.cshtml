@@ -1,0 +1,50 @@
+﻿@model cinefilos.Models.Salas
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<div>
+    <h4>Salas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fileira)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fileira)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lugares)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lugares)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sts)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_sala }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

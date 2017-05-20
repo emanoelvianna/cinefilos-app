@@ -6,6 +6,7 @@ namespace cinefilos.Models
     public class Poltronas
     {
         public enum Status_Poltrona { LIVRE, OCUPADA, QUEBRADA }
+
         [Key]
         public int Id { get; set; }
 
@@ -18,13 +19,14 @@ namespace cinefilos.Models
         public string Nome_p { get; set; }
 
         [Display(Name = "Sala")]
-        public int Id_room { get; set; }
-        public virtual Rooms Room { get; set; }
 
-        public static implicit operator Poltronas(int v)
-        {
-            throw new NotImplementedException();
-        }
+        public int Id_sala { get; set; }
+        public virtual Salas Sala { get; set; }
+
+        //public static implicit operator Poltronas(int v)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         //public Poltronas() { }
 
