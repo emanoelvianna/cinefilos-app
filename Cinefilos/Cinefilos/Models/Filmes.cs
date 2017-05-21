@@ -9,6 +9,9 @@ namespace Cinefilos.Models
 {
     public class Filmes
     {
+
+       public enum Status_filme { EM_EXIBICAO, EM_BREVE, FORA}
+
         [Key]
         [Column("Id_filmes")]
         public int Id_filmes { get; set; }
@@ -23,13 +26,19 @@ namespace Cinefilos.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
-        [Display(Name = "Duração")]
-        public float Duracao { get; set; }
 
 
         [StringLength(60, MinimumLength = 3)]
         public string Director { get; set; }
-        
+
+        [Display(Name = "Status")]
+        public Status_filme Sts { get; set; }
+
+        [Display(Name = "Duração")]
+        public int Duracao { get; set; }
+
+
+
         public int Id_genero { get; set; }
         public virtual Generos Genero { get; set; }
 
