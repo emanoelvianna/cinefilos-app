@@ -201,11 +201,13 @@
     <Compile Include="Controllers\FilmesController.cs" />
     <Compile Include="Controllers\GenerosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IngressosController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PoltronasController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SalasController.cs" />
     <Compile Include="Controllers\SessoesController.cs" />
+    <Compile Include="Controllers\VendasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -337,6 +339,17 @@
     <Content Include="Views\Role\listRoles.cshtml" />
     <Content Include="Views\Role\ManageUserRoles.cshtml" />
     <Content Include="Views\Role\Create2.cshtml" />
+    <Content Include="Views\Ingressos\Create.cshtml" />
+    <Content Include="Views\Ingressos\Delete.cshtml" />
+    <Content Include="Views\Ingressos\Details.cshtml" />
+    <Content Include="Views\Ingressos\Edit.cshtml" />
+    <Content Include="Views\Ingressos\Index.cshtml" />
+    <Content Include="Views\Vendas\Create.cshtml" />
+    <Content Include="Views\Vendas\Delete.cshtml" />
+    <Content Include="Views\Vendas\Details.cshtml" />
+    <Content Include="Views\Vendas\Edit.cshtml" />
+    <Content Include="Views\Vendas\Index.cshtml" />
+    <Content Include="Views\Ingressos\Carrinho.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

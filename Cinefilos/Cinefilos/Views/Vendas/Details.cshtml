@@ -1,0 +1,66 @@
+﻿@model Cinefilos.Models.Venda
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Venda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.F_pagamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.F_pagamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_venda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_venda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_user)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_user)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_venda }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
