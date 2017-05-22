@@ -58,30 +58,57 @@ namespace Cinefilos.Migrations
 
           },
 
-                new Filmes
-                {
-                    Title = "Ghostbusters 2",
-                    ReleaseDate = DateTime.Parse("1986-2-23"),
-                    Director = "Ivan Reitman",
-                    Id_genero =4
+            new Filmes
+            {
+                Title = "Ghostbusters 2",
+                ReleaseDate = DateTime.Parse("1986-2-23"),
+                Director = "Ivan Reitman",
+                Id_genero =4
 
-                },
+            },
 
-              new Filmes
-              {
-                  Title = "Rio Bravo",
-                  ReleaseDate = DateTime.Parse("1959-4-15"),
-                  Director = "Howard Hawks",
-                  Id_genero = 12,
+            new Filmes
+            {
+                Title = "Rio Bravo",
+                ReleaseDate = DateTime.Parse("1959-4-15"),
+                Director = "Howard Hawks",
+                Id_genero = 12,
 
-              }
+            },
 
-         //new Filmes {
-         //    Title = "The Shawshank Redemption",
-         //    ReleaseDate = DateTime.Parse("10/14/1994"),
-         //    Director = "Frank Darabont",
-         //    Id = context.Generos.Single(g => g.Name == "Drama").Id,
+            new Filmes
+            {
+                Title = "Star Wars - O Despertar da Força",
+                ReleaseDate = DateTime.Parse("2015-12-17"),
+                Director = "J. J. Abrams",
+                Id_genero = 8,
 
+            },
+
+            new Filmes
+            {
+                Title = "Interstellar",
+                ReleaseDate = DateTime.Parse("2014-1-6"),
+                Director = "Christopher Nolan",
+                Id_genero = 8,
+
+            },
+
+            new Filmes
+            {
+                Title = "Spectre",
+                ReleaseDate = DateTime.Parse("2015-11-5"),
+                Director = "Sam Mendes",
+                Id_genero = 1,
+
+            }
+
+         // new Filmes
+         // {
+         //         Title = "The Shawshank Redemption",
+         //         ReleaseDate = DateTime.Parse("10/14/1994"),
+         //         Director = "Frank Darabont",
+         //         Id = context.Generos.Single(g => g.Name == "Drama").Id,
          //},
          //new Filmes { Title = "The Godfather", Director = "Francis Ford Coppola", ReleaseDate = DateTime.Parse("3/24/1972"), Id = context.Generos.Single(g => g.Name == "Drama").Id },
          //new Filmes { Title = "Pulp Fiction", Director = "Quentin Tarantino", ReleaseDate = DateTime.Parse("10/14/1994"), Id = context.Generos.Single(g => g.Name == "Thriller").Id },
