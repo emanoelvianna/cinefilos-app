@@ -159,7 +159,7 @@ namespace Cinefilos.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await this.UserManager.AddToRoleAsync(user.Id, "Administrador");
+                    await this.UserManager.AddToRoleAsync(user.Id, "Cliente");
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                  
                       

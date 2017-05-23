@@ -61,7 +61,8 @@ namespace ReclamaTche.Controllers
         #endregion
 
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Gerente")]
+
         public ActionResult ManageUserRoles()
         {
             // prepopulat roles for the view dropdown
@@ -89,7 +90,7 @@ namespace ReclamaTche.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Gerente")]
         [ValidateAntiForgeryToken]
         public ActionResult RoleAddToUser(string UserName, string RoleName)
         {
@@ -120,7 +121,7 @@ namespace ReclamaTche.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Gerente")]
         [ValidateAntiForgeryToken]
         public ActionResult GetRoles(string UserName)
         {
@@ -150,7 +151,7 @@ namespace ReclamaTche.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Gerente")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRoleForUser(string UserName, string RoleName)
         {

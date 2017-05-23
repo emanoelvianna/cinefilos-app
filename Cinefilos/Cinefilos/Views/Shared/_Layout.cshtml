@@ -19,21 +19,60 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nome do aplicativo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Cinéfilos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Início", "Index", "Home")</li>*@
                     @*<li>@Html.ActionLink("Sobre", "About", "Home")</li>*@
-                    <li>@Html.ActionLink("Roles", "ManageUserRoles", "Role")</li>
-                    <li>@Html.ActionLink("Roles", "Index", "Role")</li>
+
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <li>@Html.ActionLink("Gerencia de acessos", "ManageUserRoles", "Role")</li>
+                      
+                        <li>@Html.ActionLink("Filmes", "Index", "Filmes")</li>
+                        <li>@Html.ActionLink("Generos", "Index", "Generos")</li>
+                        <li>@Html.ActionLink("Salas", "Index", "Salas")</li>
+                        <li>@Html.ActionLink("Poltronas", "Index", "Poltronas")</li>
+                        <li>@Html.ActionLink("Sesões", "Index", "Sessoes")</li>
+                        <li>@Html.ActionLink("Ingressos", "Index", "Ingressos")</li>
+                        <li>@Html.ActionLink("Venda", "Index", "Vendas")</li>
+
+                    }
+
+                    @if (User.IsInRole("Gerente"))
+                    {
+                        <li>@Html.ActionLink("Gerencia de acessos", "ManageUserRoles", "Role")</li>
+
+                        <li>@Html.ActionLink("Filmes", "Index", "Filmes")</li>
+                        <li>@Html.ActionLink("Generos", "Index", "Generos")</li>
+                        <li>@Html.ActionLink("Salas", "Index", "Salas")</li>
+                        <li>@Html.ActionLink("Poltronas", "Index", "Poltronas")</li>
+                        <li>@Html.ActionLink("Sesões", "Index", "Sessoes")</li>
+                        <li>@Html.ActionLink("Ingressos", "Index", "Ingressos")</li>
+                        <li>@Html.ActionLink("Venda", "Index", "Vendas")</li>
+
+                    }
+
+                    @if (User.IsInRole("Atendente"))
+                    {
+                        <li>@Html.ActionLink("Filmes", "Index", "Filmes")</li>
+                      
+                        <li>@Html.ActionLink("Poltronas", "Index", "Poltronas")</li>
+                        <li>@Html.ActionLink("Sesões", "Index", "Sessoes")</li>
+                        <li>@Html.ActionLink("Ingressos", "Index", "Ingressos")</li>
+                        <li>@Html.ActionLink("Venda", "Index", "Vendas")</li>
+
+                    }
+
+                    @if (User.IsInRole("Cliente")){ 
+                  
+             
                     <li>@Html.ActionLink("Filmes", "Index", "Filmes")</li>
-                    <li>@Html.ActionLink("Generos", "Index", "Generos")</li>
-                    <li>@Html.ActionLink("Salas", "Index", "Salas")</li>
-                    <li>@Html.ActionLink("Poltronas", "Index", "Poltronas")</li>   
-                    <li>@Html.ActionLink("Sesões", "Index", "Sessoes")</li>   
-                    <li>@Html.ActionLink("Ingressos", "Index", "Ingressos")</li>   
-                    <li>@Html.ActionLink("Venda", "Index", "Vendas")</li>   
+                 
+                 
+
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

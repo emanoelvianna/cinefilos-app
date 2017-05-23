@@ -11,17 +11,21 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            Genero
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            Genero
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ReleaseDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Director)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duracao)
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.ImageFile)
@@ -37,17 +41,22 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genero.Name)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genero.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReleaseDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Director)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Duracao)
         </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.ImageFile)
