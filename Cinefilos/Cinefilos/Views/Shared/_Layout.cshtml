@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    <title>@ViewBag.Title - Cinéfilos</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/Charts")
@@ -19,11 +19,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Cinéfilos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
+                <a href='@Url.Action("Index", "Home")'>
+                    <img src="~/Images/Logo.png" alt="Cinéfilos" style="height:40px; margin-top:5px">
+                </a>
+</div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Início", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
                     @*<li>@Html.ActionLink("Sobre", "About", "Home")</li>*@
 
                     @if (User.IsInRole("Administrador"))
@@ -82,7 +84,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Cinéfilos</p>
         </footer>
     </div>
 
