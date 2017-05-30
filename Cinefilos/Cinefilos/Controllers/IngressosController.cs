@@ -10,11 +10,13 @@ using Cinefilos.Models;
 
 namespace Cinefilos.Controllers
 {
+
     public class IngressosController : Controller
     {
         private CinemadbContext db = new CinemadbContext();
 
         // GET: Ingressos
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Index()
         {
             var ingressos = db.Ingressos.Include(i => i.Sessao).Include(i => i.Venda);

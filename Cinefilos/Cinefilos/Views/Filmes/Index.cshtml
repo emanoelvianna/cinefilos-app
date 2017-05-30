@@ -67,11 +67,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.ImageUrl)
         </td>*@
+        @if (!User.IsInRole("Cliente")) { 
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id_filmes }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id_filmes }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id_filmes })
         </td>
+        }
     </tr>
 }
 

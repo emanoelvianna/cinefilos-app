@@ -10,6 +10,7 @@ using Cinefilos.Models;
 
 namespace Cinefilos.Controllers
 {
+    
     public class SessoesController : Controller
     {
         private CinemadbContext db = new CinemadbContext();
@@ -42,6 +43,7 @@ namespace Cinefilos.Controllers
         }
 
         // GET: Sessoes/Create
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Create()
         {
             ViewBag.Id_filmes = new SelectList(db.Filmes, "Id_filmes", "Title");
@@ -54,6 +56,7 @@ namespace Cinefilos.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Create([Bind(Include = "Id_sessao,Id_filmes,Id_sala,Horario_i,Horario_f,Dia,Duracao")] Sessao sessao)
         {
             if (ModelState.IsValid)
@@ -72,6 +75,7 @@ namespace Cinefilos.Controllers
         }
 
         // GET: Sessoes/Edit/5
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,6 +97,7 @@ namespace Cinefilos.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Edit([Bind(Include = "Id_sessao,Id_filmes,Id_sala,Horario_i,Horario_f,Dia,Duracao")] Sessao sessao)
         {
             if (ModelState.IsValid)
@@ -107,6 +112,7 @@ namespace Cinefilos.Controllers
         }
 
         // GET: Sessoes/Delete/5
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,6 +130,7 @@ namespace Cinefilos.Controllers
         // POST: Sessoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult DeleteConfirmed(int id)
         {
             Sessao sessao = db.Sessao.Find(id);

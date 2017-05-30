@@ -37,6 +37,7 @@ namespace Cinefilos.Controllers
         }
 
         // GET: Filmes/Create
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Create()
         {
             ViewBag.Id_genero = new SelectList(db.Generos, "Id_genero", "Name");
@@ -48,6 +49,7 @@ namespace Cinefilos.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Create([Bind(Include = "Id,Title,ReleaseDate,Director,Id_genero,ImageFile,ImageMimeType,ImageUrl")] Filmes filmes)
         {
             if (ModelState.IsValid)
@@ -62,6 +64,7 @@ namespace Cinefilos.Controllers
         }
 
         // GET: Filmes/Edit/5
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +85,7 @@ namespace Cinefilos.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Edit([Bind(Include = "Id,Title,ReleaseDate,Director,Id_genero,ImageFile,ImageMimeType,ImageUrl")] Filmes filmes)
         {
             if (ModelState.IsValid)
@@ -95,6 +99,7 @@ namespace Cinefilos.Controllers
         }
 
         // GET: Filmes/Delete/5
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +117,7 @@ namespace Cinefilos.Controllers
         // POST: Filmes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult DeleteConfirmed(int id)
         {
             Filmes filmes = db.Filmes.Find(id);

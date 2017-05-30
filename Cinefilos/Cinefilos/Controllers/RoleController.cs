@@ -74,7 +74,7 @@ namespace ReclamaTche.Controllers
             ViewBag.listUser = listUser;
             return View();
         }
-
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Create2()
         {
             var Role = new IdentityRole();

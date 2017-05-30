@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@if (!User.IsInRole("Cliente"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -59,10 +61,17 @@
             @Html.DisplayFor(modelItem => item.Poltronas)
         </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_sessao }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_sessao }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_sessao })
+            @Html.ActionLink("Details", "Details", new { id = item.Id_sessao }) |
         </td>
+      @if (!User.IsInRole("Cliente"))
+      {
+        <td>
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id_sessao }) |
+          
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id_sessao })
+        </td>
+      }
     </tr>
 }
 
