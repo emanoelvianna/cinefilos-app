@@ -4972,7 +4972,7 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
     }
 
 .navbar-inverse {
-    background-color: #eeeeee;
+    background-color: #ffffff;
     border-color: #e6e6e6
 }
 
@@ -4990,11 +4990,11 @@ textarea.input-group-sm > .form-control, textarea.input-group-sm > .input-group-
     }
 
     .navbar-inverse .navbar-nav > li > a {
-        color: #333333
+        color: #999999
     }
 
         .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-            color: #999999;
+            color: #333333;
             background-color: transparent
         }
 

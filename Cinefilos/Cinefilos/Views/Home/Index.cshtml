@@ -5,10 +5,7 @@
 <div class="jumbotron">
     <h1>Seja bem-vindo!</h1>
     <p>O Cinéfilos é um lugar onde você encontra os melhores filmes para assistir nas melhores salas de cinema!</p>
-   @if (User.Identity.IsAuthenticated)
-   {
     <p><a class="btn btn-primary btn-lg" href="@Url.Action("Register", "Account")" role="button">Cadastre-se!</a></p>
-   }
 </div>
 
 <div class="container text-center">
