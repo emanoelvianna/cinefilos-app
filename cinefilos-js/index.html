@@ -3,49 +3,25 @@
 
 <head>
     <meta charset="utf-8">
-    <title>lista de metas</title>
-    <!-- dependencias de lib -->
+    <title>cinefilos-app</title>
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+</head>
 
+<body>
+    <!-- Angular -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <script src="node_modules/angular-material/angular-material.min.js"></script>
-
-    <!-- dependencias aplicacao  -->
+    <!-- Dependencias Aplicacao  -->
     <script src="aplicacao/module.js"></script>
-    <script src="aplicacao/controller/home-controller.js"></script>
-    <script src="aplicacao/controller/menu-controller.js"></script>
+    <script src="aplicacao/modelo/module.js"></script>
+    <script src="aplicacao/ux-componente/module.js"></script>
 
-</head>
-
-<body>
-    <div ng-controller="HomeController" layout="column" ng-cloak>
-        <section layout="row" flex>
-            <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
-
-                <md-toolbar class="md-theme-indigo">
-                    <h1 class="md-toolbar-tools">Cinefilos-app</h1>
-                </md-toolbar>
-                <md-content ng-controller="MenuController">
-                    <md-button ng-click="CadastrarSessao()" class="md-primary">
-                        Cadastrar sessão
-                    </md-button>
-                    <md-button ng-click="close()" class="md-primary">
-                        Vender ingresso
-                    </md-button>
-                </md-content>
-
-            </md-sidenav>
-            <md-content flex layout-padding>
-                <div layout="column" layout-align="top center">
-                    <p>
-                        Campo para formulário de cadastro.
-                    </p>
-                </div>
-            </md-content>
-        </section>
-    </div>
+    <script src="aplicacao/modelo/filme-factory.js"></script>
+    <script src="aplicacao/ux-componente/menu/menu-componente.js"></script>
+    <script src="aplicacao/ux-componente/filme/filme-componente.js"></script>
+    <menu></menu>
 </body>
 
 </html>
