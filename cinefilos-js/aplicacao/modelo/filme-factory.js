@@ -14,20 +14,19 @@
     self.create = create;
     self.fromJsonObject = fromJsonObject;
 
-    function create(codigo, titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
+    function create(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
       return new Filme(options);
     }
 
     function fromJsonObject(jsonObject) {
-      return new Filme(jsonObject.codigo, jsonObject.titulo, jsonObject.dataLanchamento, jsonObject.duracao, jsonObject.diretor, jsonObject.classificacaoIndicativa, jsonObject.idioma, jsonObject.imagem)
+      return new Filme(jsonObject.titulo, jsonObject.dataLanchamento, jsonObject.duracao, jsonObject.diretor, jsonObject.classificacaoIndicativa, jsonObject.idioma, jsonObject.imagem)
     }
 
     return self;
   }
 
-  function Filme(codigo, titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
+  function Filme(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
     var self = this;
-    var _codigo = codigo;
     var _titulo = titulo;
     var _dataLanchamento = dataLanchamento;
     var _duracao = duracao;
@@ -37,10 +36,6 @@
     var _imagem = imagem;
 
     /* metodos publicos */
-    function getCodigo() {
-      return _codigo;
-    }
-
     function getTitulo() {
       return _titulo;
     }
@@ -72,7 +67,6 @@
     function toJson() {
       var json = {};
 
-      json.codigo = _codigo;
       json.titulo = _titulo;
       json.dataLanchamento = _dataLanchamento;
       json.duracao = _duracao;
