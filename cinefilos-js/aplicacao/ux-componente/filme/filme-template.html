@@ -1,22 +1,44 @@
-<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-    <div>
-      <md-input-container>
-        <label>Titulo</label>
-        <input ng-model="filme.title">
-      </md-input-container>
-    </div>
-</md-content>
-
 <md-content layout-padding>
-    <div layout-gt-xs="row">
-        <md-input-container class="md-block" flex-gt-xs>
-        <label>Duração</label>
-        <input ng-model="user.company" disabled>
-        </md-input-container>
+    <md-input-container class="md-block">
+        <label>Titulo</label>
+        <input ng-model="filme.titulo">
+    </md-input-container>
 
-        <md-input-container>
-        <label>Data de lançamento</label>
-        <md-datepicker ng-model="user.submissionDate"></md-datepicker>
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block">
+            <label>Data de lançamento</label>
+            <md-datepicker ng-model="filme.dataLanchamento"></md-datepicker>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Duração</label>
+            <input ng-model="filme.duracao">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Diretor</label>
+            <input ng-model="filme.diretor">
         </md-input-container>
     </div>
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block">
+            <label>Classificação Indicativa</label>
+            <input ng-model="filme.classificacaoIndicativa">
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Genero</label>
+            <md-select ng-model="filme.genero">
+                <md-option ng-repeat="genero in generos" value="{{state.abbrev}}">
+                    {{state.abbrev}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Idioma</label>
+            <input ng-model="filme.idioma">
+        </md-input-container>
+    </div>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary">Cadastrar</md-button>
+        <md-button class="md-raised">Cancelar</md-button>
+    </section>
 </md-content>

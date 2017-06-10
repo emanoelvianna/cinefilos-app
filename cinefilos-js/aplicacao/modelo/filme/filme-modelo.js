@@ -3,7 +3,7 @@
 
   angular
     .module('modelo')
-    .factory('modelo.Filme', Factory);
+    .factory('modelo.FilmeFactory', Factory);
 
   Factory.$inject = [];
 
@@ -15,7 +15,7 @@
     self.fromJsonObject = fromJsonObject;
 
     function create(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
-      return new Filme(options);
+      return new Filme(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem);
     }
 
     function fromJsonObject(jsonObject) {
