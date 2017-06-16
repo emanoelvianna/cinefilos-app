@@ -2,22 +2,34 @@
 <html ng-app="principal">
 
 <head>
-    <meta charset="utf-8">
     <title>cinefilos-app</title>
-    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="node_modules/angular-material/angular-material.min.css" rel="stylesheet">
     <link rel="stylesheet" href="aplicacao/recurso/css/estilo.css">
 </head>
 
-<body>
+<body layout="column" ng-cloak>
+
     <!-- Angular -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="node_modules/angular-aria/angular-aria.min.js"></script>
-    <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script src="node_modules/angular-bind-html-compile-ci-dev/angular-bind-html-compile.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="node_modules/angular-ui-mask/dist/mask.min.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="node_modules/angular-resource/angular-resource.min.js"></script>
-    
-    <!-- Dependencias Aplicacao  -->
+    <!-- Angular Material -->
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
 
+    <!-- Dependencias Aplicacao  -->
     <!-- Modulo -->
     <script src="aplicacao/modulo.js"></script>
     <script src="aplicacao/modelo/modulo.js"></script>
@@ -25,19 +37,37 @@
     <script src="aplicacao/ux-componente/modulo.js"></script>
     <script src="aplicacao/servico/modulo.js"></script>
     <!-- Modelo -->
-    <script src="aplicacao/modelo/filme/filme-modelo.js"></script>
-    <script src="aplicacao/modelo/usuario/usuario-modelo.js"></script>
+    <!-- Angular -->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="node_modules/angular-bind-html-compile-ci-dev/angular-bind-html-compile.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="node_modules/angular-ui-mask/dist/mask.min.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <!-- Angular Material -->
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
+
+    <!-- Dependencias Aplicacao  -->
+    <!-- Modulo -->
+    <script src="aplicacao/modulo.js"></script>
+    <script src="aplicacao/modelo/modulo.js"></script>
+    <script src="aplicacao/modelo/ingresso/ingresso-modelo.js"></script>
+    <script src="aplicacao/modelo/sessao/sessao-modelo.js"></script>
     <!-- Componente -->
+    <script src="aplicacao/ux-componente/usuario/cadastro-usuario-componente.js"></script>
     <script src="aplicacao/ux-componente/menu/menu-componente.js"></script>
     <script src="aplicacao/ux-componente/filme/filme-componente.js"></script>
-    <script src="aplicacao/ux-componente/usuario/cadastro-usuario-componente.js"></script>
+    <script src="aplicacao/ux-componente/ingresso/ingresso-componente.js"></script>
     <!-- Comunicacao -->
     <script src="aplicacao/comunicacao/usuario/usuario-comunicacao.js"></script>
     <!-- Servico -->
     <script src="aplicacao/servico/filme-servico.js"></script>
     <script src="aplicacao/servico/usuario-servico.js"></script>
-    <!--<cadastro-usuario-componente></cadastro-usuario-componente>-->
-    <menu></menu>
+
+    <menu uiview layout="column" style="padding: inherit; margin: inherit;"></menu>
+
 </body>
 
 </html>

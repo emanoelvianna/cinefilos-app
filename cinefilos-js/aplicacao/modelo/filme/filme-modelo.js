@@ -3,7 +3,7 @@
 
   angular
     .module('modelo')
-    .factory('modelo.FilmeFactory', Factory);
+    .factory('modelo.filmeFactory', Factory);
 
   Factory.$inject = [];
 
@@ -14,19 +14,21 @@
     self.create = create;
     self.fromJsonObject = fromJsonObject;
 
-    function create(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
-      return new Filme(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem);
+    function create(codigo, titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
+      return new Filme(codigo, titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem);
     }
 
     function fromJsonObject(jsonObject) {
-      return new Filme(jsonObject.titulo, jsonObject.dataLanchamento, jsonObject.duracao, jsonObject.diretor, jsonObject.classificacaoIndicativa, jsonObject.idioma, jsonObject.imagem)
+      return new Filme(jsonObject.codigo, jsonObject.titulo, jsonObject.dataLanchamento, jsonObject.duracao, jsonObject.diretor, jsonObject.classificacaoIndicativa, jsonObject.idioma, jsonObject.imagem)
     }
 
     return self;
   }
 
-  function Filme(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
+  function Filme(codigo, titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
     var self = this;
+
+    var _codigo = codigo;
     var _titulo = titulo;
     var _dataLanchamento = dataLanchamento;
     var _duracao = duracao;
@@ -36,6 +38,20 @@
     var _imagem = imagem;
 
     /* metodos publicos */
+    self.getCodigo = getCodigo;
+    self.getTitulo = getTitulo;
+    self.getDataLanchamento = getDataLanchamento;
+    self.getDuracao = getDuracao;
+    self.getDiretor = getDiretor;
+    self.getClassificacaoIndicativa = getClassificacaoIndicativa;
+    self.getIdioma = getIdioma;
+    self.getImagem = getImagem;
+    self.toJson = toJson;
+
+    function getCodigo() {
+      return _codigo;
+    }
+
     function getTitulo() {
       return _titulo;
     }
@@ -67,6 +83,7 @@
     function toJson() {
       var json = {};
 
+      json.codigo = _codigo;
       json.titulo = _titulo;
       json.dataLanchamento = _dataLanchamento;
       json.duracao = _duracao;

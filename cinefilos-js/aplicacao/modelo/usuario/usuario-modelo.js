@@ -3,7 +3,7 @@
 
   angular
     .module('modelo')
-    .factory('modelo.UsuarioFactory', Factory);
+    .factory('modelo.usuarioFactory', Factory);
 
   Factory.$inject = [];
 
@@ -13,23 +13,29 @@
     /* metodos publicos */
     self.criar = criar;
 
-    function criar(login, senha) {
-      return new Usuario(login, senha);
+    function criar(codigo, login, senha) {
+      return new Usuario(codigo, login, senha);
     }
 
     return self;
   }
 
-  function Usuario(login, senha) {
+  function Usuario(codigo, login, senha) {
     var self = this;
 
+    var _codigo = codigo;
     var _login = login;
     var _senha = senha;
 
-    /* Public methods */
+    /* metodos publicos */
+    self.getCodigo = getCodigo;
     self.getLogin = getLogin;
     self.getSenha = getSenha;
     self.toJson = toJson;
+
+    function getCodigo() {
+      return _codigo;
+    }
 
     function getLogin() {
       return _login;
@@ -42,6 +48,7 @@
     function toJson() {
       var json = {};
 
+      json.codigo = _codigo;
       json.login = _login;
       json.senha = _senha;
 

@@ -3,7 +3,7 @@
 
   angular
     .module('comunicacao')
-    .factory('comunicacao.UsuarioComunicacao', Comunicacao);
+    .factory('comunicacao.usuarioComunicacao', Comunicacao);
 
   Comunicacao.$inject = [
     '$resource'

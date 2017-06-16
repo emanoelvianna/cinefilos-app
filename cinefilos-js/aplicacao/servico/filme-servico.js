@@ -3,10 +3,10 @@
 
   angular
     .module('servico')
-    .factory('servico.FilmeServico', Service);
+    .factory('servico.filmeServico', Service);
 
   Service.$inject = [
-    'modelo.FilmeFactory'
+    'modelo.filmeFactory'
   ];
 
   function Service(FilmeFactory) {
