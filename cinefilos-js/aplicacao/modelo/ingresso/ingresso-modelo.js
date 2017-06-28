@@ -3,7 +3,7 @@
 
     angular
         .module('modelo')
-        .factory('modelo.ingressoFactory', Factory);
+        .factory('modelo.IngressoFactory', Factory);
 
     Factory.$inject = [];
 
@@ -14,21 +14,20 @@
         self.create = create;
         self.fromJsonObject = fromJsonObject;
 
-        function create(codigo, valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial) {
-            return new Ingresso(codigo, valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial);
+        function create(valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial) {
+            return new Ingresso(valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial);
         }
 
         function fromJsonObject(jsonObject) {
-            return new Ingresso(jsonObject.codigo, jsonObject.valor, jsonObject.numeroAssento, jsonObject.promocao, jsonObject.necessidadeEspecial)
+            return new Ingresso(jsonObject.valor, jsonObject.numeroAssento, jsonObject.promocao, jsonObject.necessidadeEspecial)
         }
 
         return self;
     }
 
-    function Ingresso(codigo, valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial) {
+    function Ingresso(valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial) {
         var self = this;
 
-        var _codigo = codigo;
         var _valor = valor;
         var _numeroAssento = numeroAssento;
         var _promocao = promocao;
@@ -37,7 +36,6 @@
 
         /* metodos publicos */
         self.getValor = getValor;
-        self.getCodigo = getCodigo;
         self.getNumeroAssento = getNumeroAssento;
         self.getPromocao = getPromocao;
         self.getNotaFiscal = getNotaFiscal;
@@ -46,10 +44,6 @@
 
         function getValor() {
             return _valor;
-        }
-
-        function getCodigo() {
-            return _codigo;
         }
 
         function getNumeroAssento() {
@@ -71,7 +65,6 @@
         function toJson() {
             var json = {};
 
-            json.codigo = _codigo;
             json.valor = _valor;
             json.numeroAssento = _numeroAssento;
             json.promocao = _promocao;

@@ -3,7 +3,7 @@
 
     angular
         .module('modelo')
-        .factory('modelo.sessaoFactory', Factory);
+        .factory('modelo.SessaoFactory', Factory);
 
     Factory.$inject = [];
 
@@ -14,33 +14,27 @@
         self.create = create;
         self.fromJsonObject = fromJsonObject;
 
-        function create(codigo, horarioSessao, dataSessao) {
-            return new Sessao(codigo, horarioSessao, dataSessao);
+        function create(horarioSessao, dataSessao) {
+            return new Sessao(horarioSessao, dataSessao);
         }
 
         function fromJsonObject(jsonObject) {
-            return new Sessao(jsonObject.codigo, jsonObject.horarioSessao, jsonObject.dataSessao)
+            return new Sessao(jsonObject.horarioSessao, jsonObject.dataSessao)
         }
 
         return self;
     }
 
-    function Sessao(codigo, horarioSessao, dataSessao) {
+    function Sessao(horarioSessao, dataSessao) {
         var self = this;
 
-        var _codigo = codigo;
         var _horarioSessao = horarioSessao;
         var _dataSessao = dataSessao;
 
         /* metodos publicos */
-        self.getCodigo = getCodigo;
         self.getHorarioSessao = getHorarioSessao;
         self.getDataSessao = getDataSessao;
         self.toJson = toJson;
-
-        function getCodigo() {
-            return _codigo;
-        }
 
         function getHorarioSessao() {
             return _horarioSessao;

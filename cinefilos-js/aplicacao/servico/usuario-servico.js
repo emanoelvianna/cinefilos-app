@@ -6,7 +6,7 @@
     .service('servico.UsuarioServico', Service);
 
   Service.$inject = [
-    'modelo.usuarioFactory',
+    'modelo.UsuarioFactory',
     'comunicacao.usuarioComunicacao'
   ];
 

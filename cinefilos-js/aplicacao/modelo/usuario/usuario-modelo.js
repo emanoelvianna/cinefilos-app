@@ -3,7 +3,7 @@
 
   angular
     .module('modelo')
-    .factory('modelo.usuarioFactory', Factory);
+    .factory('modelo.UsuarioFactory', Factory);
 
   Factory.$inject = [];
 
@@ -12,30 +12,31 @@
 
     /* metodos publicos */
     self.criar = criar;
+    self.fromJsonObject = fromJsonObject;
 
-    function criar(codigo, login, senha) {
-      return new Usuario(codigo, login, senha);
+    function criar(login, senha, permissao) {
+      return new Usuario(login, senha, permissao);
+    }
+
+    function fromJsonObject(jsonObject) {
+      return new TipoVenda(jsonObject.login, jsonObject.senha, jsonObject.permissao)
     }
 
     return self;
   }
 
-  function Usuario(codigo, login, senha) {
+  function Usuario(login, senha, permissao) {
     var self = this;
 
-    var _codigo = codigo;
     var _login = login;
     var _senha = senha;
+    var _permissao = permissao;
 
     /* metodos publicos */
-    self.getCodigo = getCodigo;
     self.getLogin = getLogin;
     self.getSenha = getSenha;
+    self.getPermissao = getPermissao;
     self.toJson = toJson;
-
-    function getCodigo() {
-      return _codigo;
-    }
 
     function getLogin() {
       return _login;
@@ -45,12 +46,17 @@
       return _senha;
     }
 
+    function getPermissao() {
+      return _permissao;
+    }
+
     function toJson() {
       var json = {};
 
       json.codigo = _codigo;
       json.login = _login;
       json.senha = _senha;
+      json.permissao = _permissao;
 
       return JSON.stringify(json);
     }

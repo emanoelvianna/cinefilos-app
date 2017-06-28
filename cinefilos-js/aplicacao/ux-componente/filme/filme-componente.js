@@ -9,7 +9,7 @@
     });
 
   Controller.$inject = [
-    'modelo.filmeFactory',
+    'modelo.FilmeFactory',
     'comunicacao.filmeComunicacao'
   ];
 

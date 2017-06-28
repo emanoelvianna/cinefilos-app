@@ -6,7 +6,7 @@
     .factory('servico.filmeServico', Service);
 
   Service.$inject = [
-    'modelo.filmeFactory'
+    'modelo.FilmeFactory'
   ];
 
   function Service(FilmeFactory) {
