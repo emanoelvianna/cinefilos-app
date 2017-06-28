@@ -3,7 +3,7 @@
 
   angular
     .module('comunicacao')
-    .factory('comunicacao.usuarioComunicacao', Comunicacao);
+    .factory('comunicacao.filmeComunicacao', Comunicacao);
 
   Comunicacao.$inject = [
     '$resource'
@@ -11,7 +11,8 @@
 
   function Comunicacao($resource) {
     //TODO:
-    var SUFFIX = '/participants/:rn/activities';
+    var REST_PREFIX = 'http://10.32.162.133:8080/cinefilos-app'
+    var SUFFIX = '/filmes/cadastrar';
 
     var self = this;
 
@@ -19,20 +20,17 @@
     self.criar = criar;
 
     function criar() {
-      var restPrefix = OtusRestResourceContext.getRestPrefix();
-      var token = OtusRestResourceContext.getSecurityToken();
-      var headers = HeaderBuilderFactory.create(token);
-
+        
       return $resource({}, {}, {
         cadastrar: {
           method: 'POST',
-          url: restPrefix + SUFFIX,
+          url: REST_PREFIX + SUFFIX,
           headers: headers.json,
           params: {
             'login': '@login',
             'senha': '@senha',
           }
-        },
+        }
       });
     }
 
