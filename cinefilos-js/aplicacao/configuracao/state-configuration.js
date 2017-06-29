@@ -18,18 +18,10 @@
                     }
                 }
             })
-            .state('ingresso', {
-                url: '/home/ingresso',
-                views: {
-                    'cinefilos-root': {
-                        template: '<menu></menu>',
-                    },
-                    'cinefilos-root@ingresso': {
-                        template: '<ingresso-componente></ingresso-componente>'
-                    }
-                }
-            })
-            ;
+            .state('home.ingresso', {
+                url: '/ingresso',
+                template: '<ingresso-componente></ingresso-componente>'
+            });
 
         /* Default state (route)
          * $locationProvider.html5Mode(true);
