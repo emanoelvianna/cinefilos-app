@@ -1,0 +1,13 @@
+{
+"backend_server": "http://localhost:8080/",
+"db_server": "localhost",
+"db_port": "5432",
+"db_name": "cinefilos_db",
+"db_username": "mauricio",
+"db_password": "cinefilo",
+"failsafe_username": "failaccount",
+"failsafe_password": "failpasswd",
+"bkp_path": "/tmp/",
+"bkp_backup_cmd": "/usr/bin/pg_dump",
+"bkp_restore_cmd": "/usr/bin/psql"
+}
