@@ -3,6 +3,7 @@
 
     var app = angular
         .module('principal', [
+            'ui.router',
             'ngResource',
             'ngMaterial',
             'modelo',

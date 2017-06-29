@@ -17,6 +17,8 @@
 
 <body layout="column" ng-cloak>
 
+    <ng-view ui-view="cinefilos-root"></ng-view>
+
     <!-- Angular -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
@@ -60,8 +62,8 @@
     <!-- Servico -->
     <script src="aplicacao/servico/filme-servico.js"></script>
     <script src="aplicacao/servico/usuario-servico.js"></script>
-
-    <menu></menu>
+    <!-- Rotas -->
+    <script src="aplicacao/configuracao/state-configuration.js"></script>
 
 </body>
 

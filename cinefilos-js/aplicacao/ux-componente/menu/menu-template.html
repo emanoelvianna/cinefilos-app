@@ -1,15 +1,18 @@
 <div layout="column">
     <section layout="row" flex>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
-            <md-button class="md-primary" ng-click="go('/computers')">
+            <md-button class="md-primary" ng-click="$ctrl.go('/ingresso')">
                 Vender ingresso
             </md-button>
         </md-sidenav>
         <md-content flex layout-padding>
             <div layout="column" layout-fill layout-align="top center">
-                <div ng-view></div>
+                <div ui-view="ingresso"></div>
             </div>
             <div flex></div>
         </md-content>
     </section>
 </div>
+
+
+<ingresso-componente></ingresso-componente>

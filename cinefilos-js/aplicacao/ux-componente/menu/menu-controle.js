@@ -5,10 +5,18 @@
         .module('otusDomain.dashboard')
         .controller('menuControle', menuControle);
 
-    menuControle.$inject = [];
+    menuControle.$inject = [
+        '$state'
+    ];
 
-    function menuControle() {
+    function menuControle($state) {
         var self = this;
+
+        self.go = go;
+
+        function go(params) {
+            $state.go(params);
+        }
 
     }
 
