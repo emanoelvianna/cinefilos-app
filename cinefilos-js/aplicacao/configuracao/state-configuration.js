@@ -21,6 +21,10 @@
             .state('home.ingresso', {
                 url: '/ingresso',
                 template: '<ingresso-componente></ingresso-componente>'
+            })
+            .state('home.cadastra', {
+                url: '/cadastroFilme',
+                template: '<filme-componente></filme-componente>'
             });
 
         /* Default state (route)
