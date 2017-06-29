@@ -1,42 +1,24 @@
-(function () {
-  'use strict';
+var services = angular.module('comunicacao', ['ngResource']);
 
-  angular
-    .module('comunicacao')
-    .factory('comunicacao.usuarioComunicacao', Comunicacao);
+var baseUrl = 'http://localhost\\:8081';
 
-  Comunicacao.$inject = [
-    '$resource'
-  ];
+services.factory('DummyFactory', function ($resource) {
+    return $resource(baseUrl + '/ngdemo/web/dummy', {}, {
+        query: { method: 'GET', params: {} }
+    })
+});
 
-  function Comunicacao($resource) {
-    //TODO:
-    var SUFFIX = '/participants/:rn/activities';
+services.factory('UsersFactory', function ($resource) {
+    return $resource(baseUrl + '/ngdemo/web/users', {}, {
+        query: { method: 'GET', isArray: true },
+        create: { method: 'POST' }
+    })
+});
 
-    var self = this;
-
-    /* Public methods */
-    self.criar = criar;
-
-    function criar() {
-      var restPrefix = OtusRestResourceContext.getRestPrefix();
-      var token = OtusRestResourceContext.getSecurityToken();
-      var headers = HeaderBuilderFactory.create(token);
-
-      return $resource({}, {}, {
-        cadastrar: {
-          method: 'POST',
-          url: restPrefix + SUFFIX,
-          headers: headers.json,
-          params: {
-            'login': '@login',
-            'senha': '@senha',
-          }
-        },
-      });
-    }
-
-    return self;
-  }
-
-}());
+services.factory('UserFactory', function ($resource) {
+    return $resource(baseUrl + '/ngdemo/web/users/:id', {}, {
+        show: { method: 'GET' },
+        update: { method: 'PUT', params: {id: '@id'} },
+        delete: { method: 'DELETE', params: {id: '@id'} }
+    })
+});

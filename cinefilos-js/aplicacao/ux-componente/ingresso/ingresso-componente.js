@@ -12,5 +12,10 @@
 
   function Controller() {
     var self = this;
+
+    self.cadastrar = cadastrar;
+
+    function cadastrar(ingresso) {
+    }
   }
-}());
+} ());

@@ -9,31 +9,19 @@
     });
 
   Controller.$inject = [
-    'servico.UsuarioServico',
-    '$mdToast'
+    'UserFactory',
+    'modelo.UsuarioFactory'
   ];
 
-  function Controller(UsuarioServico, $mdToast) {
+  function Controller(UserFactory, UsuarioFactory) {
     var self = this;
-    var MENSAGEM_SENHA = 'Senha está diferente da confirmação!'
-    var _errorMensagem = $mdToast.simple().textContent(MENSAGEM_SENHA);
 
     /* metodos publicos */
     self.cadastrar = cadastrar;
 
     function cadastrar(usuario) {
-      if (_validarSenha(usuario.senha, usuario.confirmacao))
-        return new UsuarioServico.cadastrarUsuario(usuario);
-      else
-        throw new Error('Senha está diferente da confirmação!');
-    }
-
-    function _validarSenha(senha, confirmacao) {
-      return senha === confirmacao;
-    }
-
-    function _erro() {
-      $mdToast.show(_errorMensagem);
+       UserFactory.update(usuario);
+     var novoUsuario = new UsuarioFactory.criar(usuario.login, usuario.senha);
     }
   }
 }());
