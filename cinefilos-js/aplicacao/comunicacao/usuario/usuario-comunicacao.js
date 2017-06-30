@@ -16,9 +16,9 @@ services.factory('UsersFactory', function ($resource) {
 });
 
 services.factory('UserFactory', function ($resource) {
-    return $resource(baseUrl + '/cinefilos-app/filmes/atualizar', {}, {
+    return $resource(baseUrl + '/usuarios/cadastrar', {}, {
         show: { method: 'GET' },
-        atualizar: { method: 'PUT', params: {id: '@id'} },
+        cadastrar: { method: 'PUT', params: {id: '@id'} },
         delete: { method: 'DELETE', params: {id: '@id'} }
     })
 });
