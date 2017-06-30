@@ -3,8 +3,8 @@
 
   angular
     .module('uxComponente')
-    .component('venderIngressoComponente', {
-      templateUrl: 'aplicacao/ux-componente/ingresso/vender-ingresso-template.html',
+    .component('finalizarVendaIngressoComponente', {
+      templateUrl: 'aplicacao/ux-componente/ingresso/finalizar-venda/finalizar-venda-template.html',
       controller: Controller,
     });
 
@@ -24,7 +24,6 @@
 
     function cadastrar(ingresso) {
       var novoIngresso = new IngressoFactory.create(ingresso.valor, ingresso.numeroAssento, ingresso.promocao, ingresso.notaFiscal, ingresso.necessidadeEspecial);
-      //filmeComunicacao.criar().cadastrar();
       console.log(novoIngresso);
     }
   }

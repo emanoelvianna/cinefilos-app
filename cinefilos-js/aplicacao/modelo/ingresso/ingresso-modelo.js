@@ -40,7 +40,7 @@
         self.getPromocao = getPromocao;
         self.getNotaFiscal = getNotaFiscal;
         self.getNecessidadeEspecial = getNecessidadeEspecial;
-        self.fromJsonObject = fromJsonObject;
+        self.toJson = toJson;
 
         function getValor() {
             return _valor;

@@ -23,3 +23,14 @@ body > div {
 .nav-header a.logo {
     text-decoration: none;
 }
+
+menu {
+    padding-left: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    height: 100% !important;
+}
+
+select {
+    height: 100%;
+}

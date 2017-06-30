@@ -1,0 +1,32 @@
+<div class="md-padding">
+    <h2>Beckup</h2>
+    <div layout="row">
+        <div>
+            <h5>Fazer Beckup</h5>
+            <p>Iniciar de forma imediata o processo de beckup dos dados atuais</p>
+            <md-button class="md-primary md-raised demo-dialog-open-button" ng-click="ctrl.showDialog($event)">
+                Fazer beckup
+            </md-button>
+        </div>
+    </div>
+    </br>
+    <md-divider></md-divider>
+    </br>
+    <h5>Restaurar Beckup</h5>
+    <p>Seleciona o beckup que contém os dados que você deseja restaurar</p>
+    <div layout="row">
+        <md-input-container flex-gt-sm>
+            <label>Filme escolhido</label>
+            <md-select ng-model="data">
+                <md-option ng-repeat="data in $ctrl.datas" value="{{data}}">{{data}}</md-option>
+            </md-select>
+        </md-input-container>
+        <div>
+            <md-button class="md-primary md-raised demo-dialog-open-button" ng-click="ctrl.showDialog($event)">
+                Fazer beckup
+            </md-button>
+            <div>
+            </div>
+        </div>
+    </div>
+</div>

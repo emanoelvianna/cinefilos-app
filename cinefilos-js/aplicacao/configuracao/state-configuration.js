@@ -29,6 +29,10 @@
             .state('home.venderIngresso', {
                 url: '/vender-ingresso',
                 template: '<vender-ingresso-componente></vender-ingresso-componente>'
+            })
+            .state('home.backup', {
+                url: '/backup',
+                template: '<backup-componente></backup-componente>'
             });
 
         /* Default state (route)
