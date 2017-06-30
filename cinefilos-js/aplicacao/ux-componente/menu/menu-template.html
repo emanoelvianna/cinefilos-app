@@ -1,6 +1,11 @@
 <md-content>
-    <section id="" layout="row" flex>
-        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+    <md-toolbar class="fixed">
+        <div class="md-toolbar-tools">
+            <span>Cinefilos-app</span>
+        </div>
+    </md-toolbar>
+    <section layout="row" flex>
+        <md-sidenav style="height:500px;" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
             <md-button class="md-primary" ui-sref="home.cadastraFilme">
                 Cadastrar filme
             </md-button>
@@ -11,7 +16,8 @@
                 Backup
             </md-button>
         </md-sidenav>
-
-        <div ui-view></div>
+        <md-content flex layout-padding>
+            <div ui-view></div>
+        </md-content>
     </section>
 </md-content>

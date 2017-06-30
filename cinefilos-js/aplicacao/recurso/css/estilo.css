@@ -31,6 +31,6 @@ menu {
     height: 100% !important;
 }
 
-select {
-    height: 100%;
-}
+ md-sidenav {
+    min-height: 100% !important;
+  }
