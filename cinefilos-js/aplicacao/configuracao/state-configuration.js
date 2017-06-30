@@ -18,13 +18,17 @@
                     }
                 }
             })
-            .state('home.ingresso', {
-                url: '/ingresso',
-                template: '<ingresso-componente></ingresso-componente>'
+            .state('home.cadastraUsuario', {
+                url: '/cadastro-usuario',
+                template: '<cadastro-usuario-componente></cadastro-usuario-componente>'
             })
-            .state('home.cadastra', {
-                url: '/cadastroFilme',
+            .state('home.cadastraFilme', {
+                url: '/cadastro-filme',
                 template: '<filme-componente></filme-componente>'
+            })
+            .state('home.venderIngresso', {
+                url: '/vender-ingresso',
+                template: '<vender-ingresso-componente></vender-ingresso-componente>'
             });
 
         /* Default state (route)
