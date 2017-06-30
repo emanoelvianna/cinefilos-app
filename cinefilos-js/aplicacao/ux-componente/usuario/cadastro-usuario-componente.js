@@ -20,7 +20,7 @@
     self.cadastrar = cadastrar;
 
     function cadastrar(usuario) {
-       UserFactory.atualizar(usuario);
+       UserFactory.cadastrar(usuario);
      var novoUsuario = new UsuarioFactory.criar(usuario.login, usuario.senha);
     }
   }
