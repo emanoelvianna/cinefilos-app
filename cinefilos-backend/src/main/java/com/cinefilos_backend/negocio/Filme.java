@@ -1,16 +1,16 @@
 package com.cinefilos_backend.negocio;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class Filme {
 	private int codFilme;
 	private String titulo;
-	//private Calendar dataLancamento;
+	private Date dataLancamento;
 	private int duracao;	// minutos
 	private String diretor;
 	private int classificacaoIndicativa;
 	private String idioma;
-	//private byte cartaz;
+	private byte cartaz;
 	
 	public void setCodFilme(int codFilme) { this.codFilme = codFilme; } 
 	public int getCodFilme() { return codFilme; }
@@ -21,14 +21,14 @@ public class Filme {
 	public void setIdioma(String idioma) { this.idioma = idioma; }
 	public String getIdioma() { return idioma; }
 	
-	//public void setCartaz(byte cartaz) { this.cartaz = cartaz; }
-	//public byte getCartaz() { return cartaz; }
+	public void setCartaz(byte cartaz) { this.cartaz = cartaz; }
+	public byte getCartaz() { return cartaz; }
 	
 	public void setClassificacaoIndicativa(int ci) { this.classificacaoIndicativa = ci; }
 	public int getClassificacaoIndicativa() { return classificacaoIndicativa; }
 	
-	//public void setDataLancamento(Calendar dataLancamento) { this.dataLancamento = dataLancamento; }
-	//public Calendar getDataLancamento() { return dataLancamento; }
+	public void setDataLancamento(Date dataLancamento) { this.dataLancamento = dataLancamento; }
+	public Date getDataLancamento() { return dataLancamento; }
 
 	public void setDuracao(int duracao) { this.duracao = duracao; }
 	public int getDuracao() { return duracao; }

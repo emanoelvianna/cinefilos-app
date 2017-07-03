@@ -30,7 +30,7 @@ public class FilmeDAO implements IFilmesDAO {
 				f = new Filme();
 				f.setCodFilme(rs.getInt("cod_filme"));
 				f.setTitulo(rs.getString("titulo"));
-				//f.setDataLancamento(rs.getDate("data_lancamento"));
+				f.setDataLancamento(rs.getDate("data_lancamento"));
 				f.setDuracao(rs.getInt("duracao"));
 				f.setDiretor(rs.getString("diretor"));
 				f.setClassificacaoIndicativa(rs.getInt("class_indicativa"));

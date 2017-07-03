@@ -15,13 +15,14 @@ import javax.ws.rs.core.Response;
 
 import com.cinefilos_backend.persistencia.DBException;
 import com.cinefilos_backend.persistencia.FilmeDAO;
+import com.cinefilos_backend.persistencia.UsuarioDao;
 import com.cinefilos_backend.negocio.Filme;
 import com.google.gson.Gson;
 
 
 @Path("/")
 public class NegocioFachada {
-	public static final String CINEFILOS_BACKEND_CONFIG = "/tmp/cinefilos-backend-config.json";
+	public static final String CINEFILOS_BACKEND_CONFIG = "//opt//cinefilos//etc//cinefilos-backend-config.json";
 	public BackendConfig backendConfig = BackendConfig.loadConfig(CINEFILOS_BACKEND_CONFIG);
 	public Backup backup = new Backup();
 	
@@ -35,7 +36,7 @@ public class NegocioFachada {
 	}
 	
 	@GET
-	@Path("/filmes")
+	@Path("/filmes/listar")
 	@Produces({ "application/json" })
 	public String buscarTodosFilmes() {
 		IFilmesDAO db = new FilmeDAO();
@@ -61,6 +62,7 @@ public class NegocioFachada {
 		String result = "Filme criado " + filme;
 		
 		IFilmesDAO db = new FilmeDAO();
+		System.out.println("Criando filme ....");
 		
 		try {
 			db.cadastrar(filme);
@@ -111,6 +113,88 @@ IFilmesDAO db = new FilmeDAO();
 		return Response.status(200).entity(result).build();
 	}
 	
+
+	/*
+	 * Usuario
+	 */
+	
+	@GET
+	@Path("/usuarios/listar")
+	@Produces({ "application/json" })
+	public String buscarTodosUsuarios() {
+		IUsuarioDao db = new UsuarioDao();
+		Gson gson = new Gson();
+		String json = null;
+		
+		List<Usuario> usuarios = null;
+		
+		try {
+			usuarios = db.listarTodos();
+			json = gson.toJson(usuarios);
+		} catch(DBException e) {
+			return "{ \"message\": \"Erro ao conectar no BD.\" }";
+		}
+		return "{ \"usuarios\": " + json + "}";
+	}
+	
+	
+	@POST
+	@Path("/usuarios/cadastrar")
+	@Consumes({ "application/json"})
+	public Response cadastrarUsuario(Usuario usuario) {
+		String result = "Usuario criado " + usuario;
+		
+		IUsuarioDao db = new UsuarioDao();
+		System.out.println("Criando usuario ....");
+		
+		try {
+			db.cadastrar(usuario);
+		} catch(DBException e) {
+			result = "Falha ao criar usuario";
+			return Response.status(400).entity(result).build();
+		}
+		
+		return Response.status(201).entity(result).build();
+	}
+	
+	
+	@PUT
+	@Path("/usuarios/atualizar")
+	@Consumes({ "application/json" })
+	public Response atualizarUsuario(Usuario usuario) {
+		String result = "Usuario " + usuario.getLogin() + " atualizado";
+		
+		IUsuarioDao db = new UsuarioDao();
+		
+		try {
+			db.atualizar(usuario);
+		} catch(DBException e) {
+			result = "Falha ao criar filme";
+			return Response.status(400).entity(result).build();
+		}
+		
+		return Response.status(201).entity(result).build();
+
+	}
+	
+	
+	@DELETE
+	@Path("/usuarios/excluir")
+	@Consumes({ "application/json" })
+	public Response excluir(Usuario usuario) {
+		String result = "Usuario " + usuario.getLogin() + " excluido";
+		
+		IUsuarioDao db = new UsuarioDao();
+		
+		try {
+			db.excluirUsuario(usuario);
+		} catch(DBException e) {
+			result = "Falha ao excluir usuario";
+			return Response.status(400).entity(result).build();
+		}
+		
+		return Response.status(200).entity(result).build();
+	}
 	
 	
 	/*
