@@ -3,16 +3,20 @@
 
   angular
     .module('uxComponente')
-    .component('finalizarVendaIngressoComponente', {
+    .component('finalizarVenda', {
       templateUrl: 'aplicacao/ux-componente/ingresso/finalizar-venda/finalizar-venda-template.html',
       controller: Controller,
+      bindings: {
+        numero: '<'
+      }
     });
 
   Controller.$inject = [
-    'modelo.IngressoFactory'
+    'modelo.IngressoFactory',
+    'IngressoComunicacaoFactory'
   ];
 
-  function Controller(IngressoFactory) {
+  function Controller(IngressoFactory, IngressoComunicacaoFactory) {
     var self = this;
 
     self.cadastrar = cadastrar;
@@ -20,10 +24,11 @@
     self.filmes = [
       'Show de vizinha',
       'vivendo a vida adoidado'
-    ]
+    ];
 
     function cadastrar(ingresso) {
-      var novoIngresso = new IngressoFactory.create(ingresso.valor, ingresso.numeroAssento, ingresso.promocao, ingresso.notaFiscal, ingresso.necessidadeEspecial);
+      var novoIngresso = new IngressoFactory.create(ingresso.valor, self.numero, ingresso.promocao, ingresso.notaFiscal, ingresso.necessidadeEspecial);
+      IngressoComunicacaoFactory.cadastrar(novoIngresso.toJson());
       console.log(novoIngresso);
     }
   }

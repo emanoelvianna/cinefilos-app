@@ -10,10 +10,10 @@
 
   Controller.$inject = [
     '$mdDialog',
-    'BeckupComunicacaoFactory'
+    'BackupComunicacaoFactory'
   ];
 
-  function Controller($mdDialog, BeckupComunicacaoFactory) {
+  function Controller($mdDialog, BackupComunicacaoFactory) {
     var self = this;
     self.datas = [];
 
@@ -29,17 +29,17 @@
 
     function fazer() {
       var data = new Date();
-      BeckupComunicacaoFactory.fazerBeckup(data);
+      BackupComunicacaoFactory.fazerBackup(data);
       mensagemDeRealizacao();
     }
 
     function restaurar(data) {
-      BeckupComunicacaoFactory.restaurarBeckup(data);
+      BackupComunicacaoFactory.restaurarBackup(data);
       mensagemDeRestauracao();
     }
 
     function listar() {
-      // self.datas = BeckupComunicacaoFactory.listarBeckups(data);
+      // self.datas = BackupComunicacaoFactory.listarBackups(data);
       return self.datas;
     }
 

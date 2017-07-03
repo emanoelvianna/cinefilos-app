@@ -28,7 +28,7 @@
             })
             .state('home.venderIngresso', {
                 url: '/vender-ingresso',
-                template: '<vender-ingresso-componente></vender-ingresso-componente>'
+                template: '<ingresso-componente></ingresso-componente>'
             })
             .state('home.backup', {
                 url: '/backup',

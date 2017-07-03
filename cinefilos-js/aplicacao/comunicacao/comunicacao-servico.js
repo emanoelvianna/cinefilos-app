@@ -30,11 +30,11 @@ comunicacao.factory('IngressoComunicacaoFactory', function ($resource) {
 });
 
 /* backup */
-comunicacao.factory('BeckupComunicacaoFactory', function ($resource) {
+comunicacao.factory('BackupComunicacaoFactory', function ($resource) {
     return $resource({}, {}, {
-        listarBeckups: { url: baseUrl + '/cinefilos_app/backup/listarBackup', method: 'GET', params: { id: '@id' } },
-        fazerBeckup: { url: baseUrl + '/cinefilos_app/backup/fazerBackup', method: 'POST', params: { id: '@id' } },
-        restaurarBeckup: { url: baseUrl + '/cinefilos_app/backup/restaurarBackup', method: 'DELETE', params: { id: '@id' } }
+        listarBackups: { url: baseUrl + '/cinefilos_app/backup/listarBackup', method: 'GET', params: { id: '@id' } },
+        fazerBackup: { url: baseUrl + '/cinefilos_app/backup/fazerBackup', method: 'POST', params: { id: '@id' } },
+        restaurarBackup: { url: baseUrl + '/cinefilos_app/backup/restaurarBackup', method: 'DELETE', params: { id: '@id' } }
     })
 });
 
