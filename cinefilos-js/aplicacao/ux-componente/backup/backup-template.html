@@ -4,7 +4,7 @@
         <div>
             <h5>Fazer Beckup</h5>
             <p>Iniciar de forma imediata o processo de beckup dos dados atuais</p>
-            <md-button class="md-primary md-raised demo-dialog-open-button" ng-click="ctrl.showDialog($event)">
+            <md-button class="md-primary md-raised demo-dialog-open-button" ng-click="$ctrl.fazer()">
                 Fazer beckup
             </md-button>
         </div>
@@ -16,14 +16,14 @@
     <p>Seleciona o beckup que contém os dados que você deseja restaurar</p>
     <div layout="row">
         <md-input-container flex-gt-sm>
-            <label>Filme escolhido</label>
-            <md-select ng-model="data">
+            <label>Data para restaurar</label>
+            <md-select ng-model="$ctrl.data">
                 <md-option ng-repeat="data in $ctrl.datas" value="{{data}}">{{data}}</md-option>
             </md-select>
         </md-input-container>
         <div>
-            <md-button class="md-primary md-raised demo-dialog-open-button" ng-click="ctrl.showDialog($event)">
-                Fazer beckup
+            <md-button class="md-primary md-raised demo-dialog-open-button" ng-click="$ctrl.restaurar(data)">
+                Restaurar beckup
             </md-button>
             <div>
             </div>

@@ -4,13 +4,13 @@
   angular
     .module('uxComponente')
     .component('filmeComponente', {
-      templateUrl: 'aplicacao/ux-componente/filme/filme-template.html',
+      templateUrl: 'aplicacao/ux-componente/filme/cadastro-filme-template.html',
       controller: Controller,
     });
 
   Controller.$inject = [
     'modelo.FilmeFactory',
-    'comunicacao.filmeComunicacao'
+    'FilmeComunicacaoFactory'
   ];
 
   function Controller(filmeFactory, filmeComunicacao) {

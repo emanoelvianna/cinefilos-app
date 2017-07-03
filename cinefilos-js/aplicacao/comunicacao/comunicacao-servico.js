@@ -1,25 +1,40 @@
-var services = angular.module('comunicacao', ['ngResource']);
+var comunicacao = angular.module('comunicacao', ['ngResource']);
 
 var baseUrl = 'http://localhost:8080';
 
-services.factory('DummyFactory', function ($resource) {
-    return $resource(baseUrl + '/ngdemo/web/dummy', {}, {
-        query: { method: 'GET', params: {} }
-    })
-});
-
-services.factory('UsersFactory', function ($resource) {
-    return $resource(baseUrl + '/ngdemo/web/users', {}, {
-        query: { method: 'GET', isArray: true },
-        create: { method: 'POST', headers: { 'Access-Control-Allow-Origin': '*' } }
-    })
-});
-
-services.factory('UserFactory', function ($resource) {
+/* usuário */
+comunicacao.factory('UsuarioComunicacaoFactory', function ($resource) {
     return $resource({}, {}, {
-        show: { method: 'GET' },
-        atualizar: { url: baseUrl + '/cinefilos_app/usuarios/cadastrar', method: 'POST', params: { id: '@id' } },
-        //atualizar: { url:baseUrl + '/cinefilos_app/usuarios/cadastrar', method: 'POST', headers: {'Accept': '/'}, params: {id: '@id'} },
-        delete: { method: 'DELETE', params: { id: '@id' } }
+        listar: { url: baseUrl + '/cinefilos_app/filmes/listar', method: 'GET', params: { id: '@id' } },
+        cadastrar: { url: baseUrl + '/cinefilos_app/usuarios/cadastrar', method: 'POST', params: { id: '@id' } },
+        excluir: { url: baseUrl + '/cinefilos_app/usuarios/cadastrar', method: 'DELETE', params: { id: '@id' } }
     })
 });
+
+/* filme */
+comunicacao.factory('FilmeComunicacaoFactory', function ($resource) {
+    return $resource(baseUrl + '/ngdemo/web/users', {}, {
+        listar: { url: baseUrl + '/cinefilos_app/filmes/listar', method: 'GET', params: { id: '@id' } },
+        cadastrar: { url: baseUrl + '/cinefilos_app/filmes/cadastrar', method: 'POST', params: { id: '@id' } },
+        excluir: { url: baseUrl + '/cinefilos_app/filmes/excluir', method: 'DELETE', params: { id: '@id' } }
+    })
+});
+
+/* ingresso */
+comunicacao.factory('IngressoComunicacaoFactory', function ($resource) {
+    return $resource(baseUrl + '/ngdemo/web/users', {}, {
+        listar: { url: baseUrl + '/cinefilos_app/ingressos/listar', method: 'GET', params: { id: '@id' } },
+        cadastrar: { url: baseUrl + '/cinefilos_app/ingressos/cadastrar', method: 'POST', params: { id: '@id' } },
+        excluir: { url: baseUrl + '/cinefilos_app/ingressos/excluir', method: 'DELETE', params: { id: '@id' } }
+    })
+});
+
+/* backup */
+comunicacao.factory('BeckupComunicacaoFactory', function ($resource) {
+    return $resource({}, {}, {
+        listarBeckups: { url: baseUrl + '/cinefilos_app/backup/listarBackup', method: 'GET', params: { id: '@id' } },
+        fazerBeckup: { url: baseUrl + '/cinefilos_app/backup/fazerBackup', method: 'POST', params: { id: '@id' } },
+        restaurarBeckup: { url: baseUrl + '/cinefilos_app/backup/restaurarBackup', method: 'DELETE', params: { id: '@id' } }
+    })
+});
+

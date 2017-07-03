@@ -9,19 +9,20 @@
     });
 
   Controller.$inject = [
-    'UserFactory',
+    'UsuarioComunicacaoFactory',
     'modelo.UsuarioFactory'
   ];
 
-  function Controller(UserFactory, UsuarioFactory) {
+  function Controller(UsuarioComunicacaoFactory, UsuarioFactory) {
     var self = this;
 
     /* metodos publicos */
     self.cadastrar = cadastrar;
 
     function cadastrar(usuario) {
-       UserFactory.cadastrar(usuario);
-     var novoUsuario = new UsuarioFactory.criar(usuario.login, usuario.senha);
+      var novoUsuario = new UsuarioFactory.criar(usuario.login, usuario.senha);
+      UsuarioComunicacaoFactory.cadastrar(novoUsuario.toJson());
+      console.log(novoUsuario);
     }
   }
 }());

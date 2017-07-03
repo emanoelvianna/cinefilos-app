@@ -52,8 +52,7 @@
 
     function toJson() {
       var json = {};
-
-      json.codigo = _codigo;
+      
       json.login = _login;
       json.senha = _senha;
       json.permissao = _permissao;
