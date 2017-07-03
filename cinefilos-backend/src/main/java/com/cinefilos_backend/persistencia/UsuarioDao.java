@@ -35,14 +35,43 @@ public class UsuarioDao implements IUsuarioDao {
 
 	@Override
 	public Usuario buscarPorCodigo(int codigo) throws DBException {
-		// TODO Auto-generated method stub
-		return null;
+		Usuario u = null;
+		
+		try(Connection conn = Conexao.getConexao()) {
+			String sql = "SELECT cod_usuario, login, senha, permissao FROM usuario " +
+						"WHERE cod_usuario=?";
+					
+			
+			PreparedStatement cmd = conn.prepareStatement(sql);
+			cmd.setInt(1, codigo);
+			ResultSet rs = cmd.executeQuery(sql);
+			
+			u = new Usuario();
+			u.setCodUsuario(rs.getInt("cod_usuario"));
+			u.setLogin(rs.getString("login"));
+			u.setSenha(rs.getString("senha"));
+			u.setPermissao(rs.getInt("permissao"));
+		} catch(Exception e) {
+			throw new DBException("Falha ao conectar ao BD");
+		}
+		return u;
 	}
 
 	@Override
 	public void excluirUsuario(Usuario usuario) throws DBException {
-		// TODO Auto-generated method stub
-		
+		try(Connection conn = Conexao.getConexao()) {
+			String sql = "DELETE FROM usuario WHERE cod_usuario = ?";
+											
+			PreparedStatement cmd = conn.prepareStatement(sql);
+			cmd.setInt(1, usuario.getCodUsuario());
+			cmd.executeUpdate();
+						
+			cmd.close();
+			conn.close();
+		} catch(Exception e) {
+			e.printStackTrace(System.out);
+			throw new DBException("Falha ao conectar ao BD");
+		}
 	}
 
 	@Override
@@ -60,7 +89,7 @@ public class UsuarioDao implements IUsuarioDao {
 				u = new Usuario();
 				u.setCodUsuario(rs.getInt("cod_usuario"));
 				u.setLogin(rs.getString("login"));
-				u.setSenha(rs.getString("diretor"));
+				u.setSenha(rs.getString("senha"));
 				u.setPermissao(rs.getInt("permissao"));
 				lista.add(u);
 			}
@@ -68,13 +97,26 @@ public class UsuarioDao implements IUsuarioDao {
 			throw new DBException("Falha ao conectar ao BD");
 		}
 		return lista;
-
 	}
 
 	@Override
 	public void atualizar(Usuario usuario) throws DBException {
-		// TODO Auto-generated method stub
-		
+		try(Connection conn = Conexao.getConexao()) {
+			String sql = "UPDATE usuario SET login=?, senha=?, permissao=? " +
+						"WHERE cod_usuario=?";
+								
+			PreparedStatement cmd = conn.prepareStatement(sql);
+			cmd.setString(1,  usuario.getLogin());
+			cmd.setString(2, usuario.getSenha());
+			cmd.setInt(3, usuario.getPermissao());
+			cmd.setInt(4,  usuario.getCodUsuario());
+			cmd.executeUpdate();
+			
+			cmd.close();
+			conn.close();
+		} catch(Exception e) {
+			e.printStackTrace(System.out);
+			throw new DBException("Falha ao conectar ao BD");
+		}
 	}
-
 }

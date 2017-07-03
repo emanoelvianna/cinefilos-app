@@ -53,7 +53,7 @@ public class FilmeDAO implements IFilmesDAO {
 								
 			PreparedStatement cmd = conn.prepareStatement(sql);
 			cmd.setString(1,  filme.getTitulo());
-			cmd.setInt(2, filme.getDuracao());
+			cmd.setTime(2, filme.getDuracao());
 			cmd.setString(3, filme.getDiretor());
 			cmd.setInt(4,  filme.getClassificacaoIndicativa());
 			cmd.setString(5, filme.getIdioma());

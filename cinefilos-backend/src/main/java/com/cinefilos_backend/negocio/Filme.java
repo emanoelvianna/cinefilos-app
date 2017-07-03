@@ -1,12 +1,13 @@
 package com.cinefilos_backend.negocio;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Filme {
 	private int codFilme;
 	private String titulo;
 	private Date dataLancamento;
-	private int duracao;	// minutos
+	private Time duracao;	// minutos
 	private String diretor;
 	private int classificacaoIndicativa;
 	private String idioma;

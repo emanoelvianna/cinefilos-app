@@ -14,22 +14,22 @@
     self.create = create;
     self.fromJsonObject = fromJsonObject;
 
-    function create(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
-      return new Filme(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem);
+    function create(titulo, dataLancamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
+      return new Filme(titulo, dataLancamento, duracao, diretor, classificacaoIndicativa, idioma, imagem);
     }
 
     function fromJsonObject(jsonObject) {
-      return new Filme(jsonObject.titulo, jsonObject.dataLanchamento, jsonObject.duracao, jsonObject.diretor, jsonObject.classificacaoIndicativa, jsonObject.idioma, jsonObject.imagem)
+      return new Filme(jsonObject.titulo, jsonObject.dataLancamento, jsonObject.duracao, jsonObject.diretor, jsonObject.classificacaoIndicativa, jsonObject.idioma, jsonObject.imagem)
     }
 
     return self;
   }
 
-  function Filme(titulo, dataLanchamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
+  function Filme(titulo, dataLancamento, duracao, diretor, classificacaoIndicativa, idioma, imagem) {
     var self = this;
 
     var _titulo = titulo;
-    var _dataLanchamento = dataLanchamento;
+    var _dataLancamento = dataLancamento;
     var _duracao = duracao;
     var _diretor = diretor;
     var _classificacaoIndicativa = classificacaoIndicativa;
@@ -38,7 +38,7 @@
 
     /* metodos publicos */
     self.getTitulo = getTitulo;
-    self.getDataLanchamento = getDataLanchamento;
+    self.getDataLancamento = getDataLancamento;
     self.getDuracao = getDuracao;
     self.getDiretor = getDiretor;
     self.getClassificacaoIndicativa = getClassificacaoIndicativa;
@@ -50,8 +50,8 @@
       return _titulo;
     }
 
-    function getDataLanchamento() {
-      return _dataLanchamento;
+    function getDataLancamento() {
+      return _dataLancamento;
     }
 
     function getDuracao() {
@@ -78,7 +78,7 @@
       var json = {};
 
       json.titulo = _titulo;
-      json.dataLanchamento = _dataLanchamento;
+      json.dataLancamento = _dataLancamento;
       json.duracao = _duracao;
       json.diretor = _diretor;
       json.classificacaoIndicativa = _classificacaoIndicativa;

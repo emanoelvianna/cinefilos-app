@@ -19,8 +19,8 @@
     self.cadastrar = cadastrar;
 
     function cadastrar(filme) {
-      var novoFilme = new filmeFactory.create(filme.titulo, filme.dataLanchamento, filme.duracao, filme.diretor, filme.classificacaoIndicativa, filme.idioma, filme.imagem);
-      //filmeComunicacao.criar().cadastrar();
+      var novoFilme = new filmeFactory.create(filme.titulo, filme.dataLancamento, filme.duracao, filme.diretor, filme.classificacaoIndicativa, filme.idioma, filme.imagem);
+      filmeComunicacao.cadastrar(novoFilme.toJson())
       console.log(novoFilme);
     }
   }
