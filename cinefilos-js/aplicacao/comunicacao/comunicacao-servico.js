@@ -1,6 +1,6 @@
 var services = angular.module('comunicacao', ['ngResource']);
 
-var baseUrl = 'http://10.32.148.49\\:8080';
+var baseUrl = 'http://localhost:8080';
 
 services.factory('DummyFactory', function ($resource) {
     return $resource(baseUrl + '/ngdemo/web/dummy', {}, {
@@ -11,14 +11,15 @@ services.factory('DummyFactory', function ($resource) {
 services.factory('UsersFactory', function ($resource) {
     return $resource(baseUrl + '/ngdemo/web/users', {}, {
         query: { method: 'GET', isArray: true },
-        create: { method: 'POST' }
+        create: { method: 'POST', headers: { 'Access-Control-Allow-Origin': '*' } }
     })
 });
 
 services.factory('UserFactory', function ($resource) {
-    return $resource(baseUrl + '/usuarios/cadastrar', {}, {
+    return $resource({}, {}, {
         show: { method: 'GET' },
-        cadastrar: { method: 'PUT', params: {id: '@id'} },
-        delete: { method: 'DELETE', params: {id: '@id'} }
+        atualizar: { url: baseUrl + '/cinefilos_app/usuarios/cadastrar', method: 'POST', params: { id: '@id' } },
+        //atualizar: { url:baseUrl + '/cinefilos_app/usuarios/cadastrar', method: 'POST', headers: {'Accept': '/'}, params: {id: '@id'} },
+        delete: { method: 'DELETE', params: { id: '@id' } }
     })
 });
