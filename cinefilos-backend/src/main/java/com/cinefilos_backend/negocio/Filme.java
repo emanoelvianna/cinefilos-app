@@ -1,6 +1,7 @@
 package com.cinefilos_backend.negocio;
 
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class Filme {
 	private int codFilme;
 	private String titulo;
 	private Date dataLancamento;
-	private int duracao;
+	private Time duracao;
 	private String diretor;
 	private int classificacaoIndicativa;
 	private String idioma;
@@ -33,8 +34,8 @@ public class Filme {
 	public void setDataLancamento(Date dataLancamento) { this.dataLancamento = dataLancamento; }
 	public Date getDataLancamento() { return dataLancamento; }
 
-	public void setDuracao(int duracao_p) { duracao = duracao_p; }
-	public int getDuracao() { return duracao; }
+	public void setDuracao(Time duracao_p) { duracao = duracao_p; }
+	public Time getDuracao() { return duracao; }
 	
 	public void setDiretor(String diretor) { this.diretor = diretor; }
 	public String getDiretor() { return diretor; }
