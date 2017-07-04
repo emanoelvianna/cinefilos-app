@@ -18,7 +18,7 @@
         <md-input-container flex-gt-sm>
             <label>Data para restaurar</label>
             <md-select ng-model="$ctrl.data">
-                <md-option ng-repeat="data in $ctrl.datas" value="{{data}}">{{data}}</md-option>
+                <md-option ng-repeat="data in $ctrl" value="{{data.data}}">{{data.data}}</md-option>
             </md-select>
         </md-input-container>
         <div>

@@ -22,6 +22,7 @@
       var novoFilme = new filmeFactory.create(filme.titulo, filme.dataLancamento, filme.duracao, filme.diretor, filme.classificacaoIndicativa, filme.idioma, filme.imagem);
       filmeComunicacao.cadastrar(novoFilme.toJson())
       console.log(novoFilme);
+      //console.log(filme.duracao);
     }
   }
 }());

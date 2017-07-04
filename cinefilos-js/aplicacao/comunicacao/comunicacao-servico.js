@@ -31,10 +31,11 @@ comunicacao.factory('IngressoComunicacaoFactory', function ($resource) {
 
 /* backup */
 comunicacao.factory('BackupComunicacaoFactory', function ($resource) {
+  console.log("Executou");
     return $resource({}, {}, {
-        listarBackups: { url: baseUrl + '/cinefilos_app/backup/listarBackup', method: 'GET', params: { id: '@id' } },
-        fazerBackup: { url: baseUrl + '/cinefilos_app/backup/fazerBackup', method: 'POST', params: { id: '@id' } },
-        restaurarBackup: { url: baseUrl + '/cinefilos_app/backup/restaurarBackup', method: 'DELETE', params: { id: '@id' } }
+
+        listarBackups: { url: baseUrl + '/cinefilos_app/listarBackup', method: 'GET'},
+        fazerBackup: { url: baseUrl + '/cinefilos_app/fazerBackup', method: 'GET' },
+        restaurarBackup: { url: baseUrl + '/cinefilos_app/restaurarBackup', method: 'DELETE', params: { id: '@id' } }
     })
 });
-

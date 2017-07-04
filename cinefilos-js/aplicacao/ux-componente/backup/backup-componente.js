@@ -21,15 +21,19 @@
     self.restaurar = restaurar;
     self.listar = listar;
 
+    /*
     self.datas = [
       { "data": "02/07/2017 21:32:13", "arquivo": "cinefilos-backup-20170702213213.sql" },
       { "data": "02/07/2017 21:32:51", "arquivo": "cinefilos-backup-20170702213251.sql" },
       { "data": "02/07/2017 22:09:28", "arquivo": "cinefilos-backup-20170702220928.sql" }
     ]
+    */
+
+    listar();
 
     function fazer() {
       var data = new Date();
-      BackupComunicacaoFactory.fazerBackup(data);
+      BackupComunicacaoFactory.fazerBackup();
       mensagemDeRealizacao();
     }
 
@@ -39,8 +43,10 @@
     }
 
     function listar() {
-      // self.datas = BackupComunicacaoFactory.listarBackups(data);
-      return self.datas;
+      self.datas = BackupComunicacaoFactory.listarBackups();
+
+      console.log(self.datas);
+    //  return self.datas;
     }
 
     function mensagemDeRealizacao() {
