@@ -2,6 +2,7 @@ package com.cinefilos_backend.negocio;
 
 
 import java.util.Date;
+import java.util.List;
 
 public class Filme {
 	private int codFilme;
@@ -12,6 +13,7 @@ public class Filme {
 	private int classificacaoIndicativa;
 	private String idioma;
 	private byte cartaz;
+	List<Genero> generos;
 	
 	public void setCodFilme(int codFilme) { this.codFilme = codFilme; } 
 	public int getCodFilme() { return codFilme; }
@@ -37,12 +39,6 @@ public class Filme {
 	public void setDiretor(String diretor) { this.diretor = diretor; }
 	public String getDiretor() { return diretor; }
 	
-	public String toString() {
-		return 	"toString[Codigo: " + codFilme +
-				" Titulo: " + titulo +
-				" Duracao: " + duracao +
-				" Diretor: " + diretor +
-				" Classificacao: " + classificacaoIndicativa +
-				" Idioma: " + idioma + "]";				
-	}
+	public void setGeneros(List<Genero> generos) { this.generos = generos; }
+	public List<Genero> getGeneros() { return generos; }
 }
