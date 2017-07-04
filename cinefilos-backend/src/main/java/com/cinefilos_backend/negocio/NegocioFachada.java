@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import com.cinefilos_backend.persistencia.DBException;
 import com.cinefilos_backend.persistencia.FilmeDAO;
+import com.cinefilos_backend.persistencia.GeneroDao;
 import com.cinefilos_backend.persistencia.UsuarioDao;
 import com.cinefilos_backend.negocio.Filme;
 import com.google.gson.Gson;
@@ -53,6 +54,10 @@ public class NegocioFachada {
 		}
 		return "{ \"filmes\": " + json + "}";
 	}
+	
+	/*
+	 * Filmes
+	 */
 	
 	
 	@POST
@@ -101,7 +106,7 @@ public class NegocioFachada {
 	public Response excluirFilme(Filme filme) {
 		String result = "Filme " + filme.getTitulo() + " excluido";
 		
-IFilmesDAO db = new FilmeDAO();
+		IFilmesDAO db = new FilmeDAO();
 		
 		try {
 			db.excluir(filme);
@@ -169,7 +174,7 @@ IFilmesDAO db = new FilmeDAO();
 		try {
 			db.atualizar(usuario);
 		} catch(DBException e) {
-			result = "Falha ao criar filme";
+			result = "Falha ao atualizar usuario";
 			return Response.status(400).entity(result).build();
 		}
 		
@@ -181,7 +186,7 @@ IFilmesDAO db = new FilmeDAO();
 	@DELETE
 	@Path("/usuarios/excluir")
 	@Consumes({ "application/json" })
-	public Response excluir(Usuario usuario) {
+	public Response excluirUsuario(Usuario usuario) {
 		String result = "Usuario " + usuario.getLogin() + " excluido";
 		
 		IUsuarioDao db = new UsuarioDao();
@@ -195,7 +200,90 @@ IFilmesDAO db = new FilmeDAO();
 		
 		return Response.status(200).entity(result).build();
 	}
+
 	
+	/*
+	 * Genero
+	 */
+	
+	@GET
+	@Path("/generos/listar")
+	@Produces({ "application/json" })
+	public String buscarTodosGeneros() {
+		IGeneroDao db = new GeneroDao();
+		Gson gson = new Gson();
+		String json = null;
+		
+		List<Genero> generos = null;
+		
+		try {
+			generos = db.listarTodos();
+			json = gson.toJson(generos);
+		} catch(DBException e) {
+			return "{ \"message\": \"Erro ao conectar no BD.\" }";
+		}
+		return "{ \"generos\": " + json + "}";
+	}
+	
+	
+	@POST
+	@Path("/generos/cadastrar")
+	@Consumes({ "application/json"})
+	public Response cadastrarGenero(Genero genero) {
+		String result = "Genero criado" + genero;
+		
+		IGeneroDao db = new GeneroDao();
+		
+		try {
+			db.cadastrar(genero);
+		} catch(DBException e) {
+			result = "Falha ao criar genero";
+			return Response.status(400).entity(result).build();
+		}
+		
+		return Response.status(201).entity(result).build();
+	}
+	
+	/*
+	
+	@PUT
+	@Path("/generos/atualizar")
+	@Consumes({ "application/json" })
+	public Response atualizarGenero(Genero genero) {
+		String result = "Genero " + genero.getNome() + " atualizado";
+		
+		IGeneroDao db = new GeneroDao();
+		
+		try {
+			db.atualizar(genero);
+		} catch(DBException e) {
+			result = "Falha ao criar genero";
+			return Response.status(400).entity(result).build();
+		}
+		
+		return Response.status(201).entity(result).build();
+	}
+	*/
+	
+	
+	@DELETE
+	@Path("/generos/excluir")
+	@Consumes({ "application/json" })
+	public Response excluirGenero(Genero genero) {
+		String result = "Genero " + genero.getNome() + " excluido";
+		
+		IGeneroDao db = new GeneroDao();
+		
+		try {
+			db.excluir(genero);
+		} catch(DBException e) {
+			result = "Falha ao excluir genero";
+			return Response.status(400).entity(result).build();
+		}
+		
+		return Response.status(200).entity(result).build();
+	}
+		
 	
 	/*
 	 * 

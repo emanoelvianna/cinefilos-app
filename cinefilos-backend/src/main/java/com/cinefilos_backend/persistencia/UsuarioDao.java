@@ -14,7 +14,6 @@ public class UsuarioDao implements IUsuarioDao {
 
 	@Override
 	public void cadastrar(Usuario usuario) throws DBException {
-	
 		try(Connection conn = Conexao.getConexao()) {
 			String sql = "INSERT INTO usuario (login, senha, permissao) " +
 						"VALUES (?, ?, ?)";
