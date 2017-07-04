@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cinefilos_backend.negocio.Filme;
-import com.cinefilos_backend.negocio.IFilmesDAO;
+import com.cinefilos_backend.negocio.IFilmeDao;
 
 
 
-public class FilmeDAO implements IFilmesDAO {
+public class FilmeDAO implements IFilmeDao {
 
 	public List<Filme> listarTodos() throws DBException {
 		List<Filme> lista = new ArrayList<Filme>();

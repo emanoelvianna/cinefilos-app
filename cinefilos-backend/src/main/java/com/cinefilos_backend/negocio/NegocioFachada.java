@@ -40,7 +40,7 @@ public class NegocioFachada {
 	@Path("/filmes/listar")
 	@Produces({ "application/json" })
 	public String buscarTodosFilmes() {
-		IFilmesDAO db = new FilmeDAO();
+		IFilmeDao db = new FilmeDAO();
 		Gson gson = new Gson();
 		String json = null;
 		
@@ -66,7 +66,7 @@ public class NegocioFachada {
 	public Response cadastrarFilme(Filme filme) {
 		String result = "Filme criado " + filme;
 		
-		IFilmesDAO db = new FilmeDAO();
+		IFilmeDao db = new FilmeDAO();
 		System.out.println("Criando filme ....");
 		
 		try {
@@ -86,7 +86,7 @@ public class NegocioFachada {
 	public Response atualizarFilme(Filme filme) {
 		String result = "Filme " + filme.getTitulo() + " atualizado";
 		
-		IFilmesDAO db = new FilmeDAO();
+		IFilmeDao db = new FilmeDAO();
 		
 		try {
 			db.atualizar(filme);
@@ -106,7 +106,7 @@ public class NegocioFachada {
 	public Response excluirFilme(Filme filme) {
 		String result = "Filme " + filme.getTitulo() + " excluido";
 		
-		IFilmesDAO db = new FilmeDAO();
+		IFilmeDao db = new FilmeDAO();
 		
 		try {
 			db.excluir(filme);

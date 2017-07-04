@@ -5,7 +5,7 @@ import com.cinefilos_backend.persistencia.DBException;
 
 
 
-public interface IFilmesDAO {
+public interface IFilmeDao {
 	public boolean cadastrar(Filme filme) throws DBException;
 	public boolean excluir(Filme filme) throws DBException;
 	public boolean atualizar(Filme filme) throws DBException;
