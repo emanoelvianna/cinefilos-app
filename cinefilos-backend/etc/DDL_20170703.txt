@@ -1,7 +1,7 @@
 CREATE TABLE notificacoes (
 	cod_notificacao SERIAL PRIMARY KEY,
 	via_email BIT(1) NOT NULL DEFAULT '0',
-	tela_de_acesso BIT(1) NOT NULL DEFAULT '0',
+	tela_de_acesso CHAR(1) NOT NULL DEFAULT '0',
 	mensagem VARCHAR(100)
 );
 
@@ -110,8 +110,8 @@ CREATE TABLE ingressos (
 	cod_ingresso SERIAL PRIMARY KEY,
 	valor NUMERIC(10,2) NOT NULL,
 	no_assento INT NOT NULL,
-	promocao BIT(1),
-	necessidades_especiais BIT(1),
+	promocao CHAR(1),
+	necessidades_especiais CHAR(1),
 	cod_sessao INT NOT NULL,
 	UNIQUE(no_assento, cod_sessao)
 );
@@ -149,7 +149,7 @@ CREATE TABLE sessoes (
 	cod_filme INT NOT NULL,
 	cod_sala INT NOT NULL,
 	cod_idioma INT NOT NULL,
-	legendado BIT(1)
+	legendado CHAR(1)
 );
 
 
@@ -157,7 +157,7 @@ CREATE TABLE salas (
 	cod_sala SERIAL PRIMARY KEY,
 	numero INT NOT NULL,
 	lugares INT NOT NULL,
-	status BIT(1),
+	status CHAR(1),
 	fileiras INT
 );
 

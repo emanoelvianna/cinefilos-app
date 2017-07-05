@@ -14,7 +14,7 @@
                 url: '/home',
                 views: {
                     'cinefilos-root': {
-                        template: '<menu></menu>',
+                        template: '<menu-componente></menu-componente>',
                     }
                 }
             })
@@ -25,6 +25,10 @@
             .state('home.cadastraFilme', {
                 url: '/cadastro-filme',
                 template: '<filme-componente></filme-componente>'
+            })
+            .state('home.listarFilme', {
+                url: '/listar-filme',
+                template: '<listar-filme-componente></listar-filme-componente>'
             })
             .state('home.venderIngresso', {
                 url: '/vender-ingresso',

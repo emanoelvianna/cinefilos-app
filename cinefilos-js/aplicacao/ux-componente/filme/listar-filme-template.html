@@ -1,0 +1,15 @@
+<md-content>
+    <md-list flex>
+        <md-subheader class="md-no-sticky">3 line item (with hover)</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="filme in $ctrl.filmes" ng-click="null">
+            <div  ng-click="$ctrl.cadastrar()" class="md-list-item-text" layout="column">
+                <h3>{{ filme }}</h3>
+                <h4>{{ filme }}</h4>
+                <p>{{ filme }}</p>
+            </div>
+        </md-list-item>
+        <md-button aria-label="menu" class="md-fab md-mini md-primary">
+            <md-icon md-svg-src="assets/icons/playlist_add.svg" ng-click="addPlaylist(song, $event)" aria-label="add_playlist"></md-icon>
+        </md-button>
+    </md-list>
+</md-content>

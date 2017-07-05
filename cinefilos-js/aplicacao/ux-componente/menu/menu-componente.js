@@ -3,7 +3,7 @@
 
   angular
     .module('uxComponente')
-    .component('menu', {
+    .component('menuComponente', {
       controller: Controller,
       templateUrl: 'aplicacao/ux-componente/menu/menu-template.html'
     });
