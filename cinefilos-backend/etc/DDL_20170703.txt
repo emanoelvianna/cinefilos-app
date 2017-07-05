@@ -82,21 +82,20 @@ CREATE TABLE filmes (
 	sinopse VARCHAR(100)
 );
 
+CREATE TABLE formas_pagamento (
+	cod_forma_pagamento SERIAL PRIMARY KEY,
+	nome VARCHAR(50)
+);
+
 
 CREATE TABLE vendas (
 	cod_venda SERIAL PRIMARY KEY,
 	data_venda DATE NOT NULL,
-	forma_pagamento VARCHAR(100) NOT NULL,
-	cod_tipo_venda INT NOT NULL,
+	hora_venda TIME NOT NULL,
+	cod_forma_pagamento INT NOT NULL,
 	cod_funcionario INT,
 	cod_cliente INT,
 	nota_fiscal INT
-);
-
-
-CREATE TABLE tipos_vendas (
-	cod_tipo_venda SERIAL PRIMARY KEY,
-	descricao VARCHAR(100)
 );
 
 
@@ -187,14 +186,14 @@ FOREIGN KEY (cod_filme) REFERENCES filmes (cod_filme);
 ALTER TABLE filmes_generos ADD CONSTRAINT fk_fil_gen_cod_genero
 FOREIGN KEY (cod_genero) REFERENCES generos (cod_genero);
 
-ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_tipo_venda
-FOREIGN KEY (cod_tipo_venda) REFERENCES tipos_vendas (cod_tipo_venda);
-
 ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_funcionario
 FOREIGN KEY (cod_funcionario) REFERENCES funcionarios (cod_funcionario);
 
 ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_cliente
 FOREIGN KEY (cod_cliente) REFERENCES clientes (cod_cliente);
+
+ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_forma_pagamento
+FOREIGN KEY (cod_forma_pagamento) REFERENCES formas_pagamento (cod_forma_pagamento);
 
 ALTER TABLE ingressos_vendas ADD CONSTRAINT fk_ingr_venda_cod_venda
 FOREIGN KEY (cod_venda) REFERENCES vendas (cod_venda);

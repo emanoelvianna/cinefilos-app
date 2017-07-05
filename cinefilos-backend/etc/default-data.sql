@@ -107,6 +107,13 @@ values ('atendente', 'atendente 1', (to_date('02/06/1997', 'DD/MM/YYYY')), 'Rio 
 
 
 --
+-- Formas pagamento
+insert into formas_pagamento (nome) values('dinheiro');
+insert into formas_pagamento (nome) values('cartao de debito');
+insert into formas_pagamento (nome) values('cartao de credito');
+
+
+--
 -- Vendas
 
 
@@ -142,6 +149,7 @@ values (30.00, 7, '0', '0', 6);
 -- Queries
 
 -- Retorna cod_sessao e quantidade de ingressos vendidos (por cod_sessao)
+--
 SELECT s.cod_sessao AS sessao, sl.numero AS sala, s.data_sessao AS data, 
   s.horario_sessao AS hora, sl.lugares AS capacidade, 
   COUNT(i.cod_ingresso) AS vendidos,
@@ -150,3 +158,36 @@ LEFT OUTER JOIN ingressos i ON (s.cod_sessao = i.cod_sessao)
 INNER JOIN salas sl ON (sl.cod_sala = s.cod_sala)
 GROUP BY s.cod_sessao, sl.cod_sala
 ORDER BY s.cod_sessao;
+
+
+
+-- Exemplo de transacao para insercao de venda 
+--
+
+begin transaction;
+insert into vendas (data_venda, hora_venda, cod_forma_pagamento, cod_funcionario, cod_cliente, nota_fiscal)
+values(current_date, current_time, 1, 1, NULL, 1);
+
+insert into ingressos (valor, no_assento, promocao, necessidades_especiais, cod_sessao)
+values (100.00, 9, '0', '0', 1);
+
+insert into ingressos_vendas (cod_venda, cod_ingresso)
+values (currval('vendas_cod_venda_seq'), currval('ingressos_cod_ingresso_seq'));
+
+commit;
+
+
+
+
+-- Listagem de itens de uma venda
+--
+SELECT v.cod_venda, i_v.cod_ingresso AS codigo_item, fil.titulo AS item FROM vendas v
+INNER JOIN ingressos_vendas i_v ON (v.cod_venda = i_v.cod_venda)
+INNER JOIN ingressos ing ON (i_v.cod_ingresso = ing.cod_ingresso)
+INNER JOIN sessoes sess ON (ing.cod_sessao = sess.cod_sessao)
+INNER JOIN filmes fil ON (sess.cod_filme = fil.cod_filme)
+union
+SELECT v.cod_venda, a_v.cod_alimento AS codigo_item, al.nome AS item FROM vendas v
+INNER JOIN alimentos_vendas a_v ON(v.cod_venda = a_v.cod_venda)
+INNER JOIN alimentos al ON (a_v.cod_alimento = al.cod_alimento);
+
