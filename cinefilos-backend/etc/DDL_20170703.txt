@@ -1,53 +1,51 @@
 CREATE TABLE notificacoes (
 	cod_notificacao SERIAL PRIMARY KEY,
-	via_email CHAR(1) NOT NULL,
-	tela_de_acesso CHAR(1) NOT NULL,
+	via_email BIT(1) NOT NULL DEFAULT '0',
+	tela_de_acesso BIT(1) NOT NULL DEFAULT '0',
 	mensagem VARCHAR(100)
 );
 
 
-CREATE TABLE usuario_notificacao (
-	cod_usur_notificacao SERIAL PRIMARY KEY,
+CREATE TABLE usuarios_notificacoes (
 	cod_usuario INT,
 	cod_notificacao INT
 );
 
 
-CREATE TABLE usuario (
+CREATE TABLE usuarios (
 	cod_usuario SERIAL PRIMARY KEY,
-	login VARCHAR(10) NOT NULL,
+	login VARCHAR(20) NOT NULL,
 	senha VARCHAR(100) NOT NULL,
-	permissao INT
+	permissao INT NOT NULL DEFAULT 0
 );
 
 
-CREATE TABLE funcionario (
+CREATE TABLE funcionarios (
 	cod_funcionario SERIAL PRIMARY KEY,
-	cargo VARCHAR(100) NOT NULL,
 	nome VARCHAR(100) NOT NULL,
+	cargo VARCHAR(100) NOT NULL,
 	data_nascimento DATE,
 	estado VARCHAR(100),
 	cidade VARCHAR(100),
 	bairro VARCHAR(100),
 	logradouro VARCHAR(200),
 	sexo CHAR(1) NOT NULL,
-	telefone INT,
+	telefone VARCHAR(15),
 	cod_usuario INT
 );
 
 
-CREATE TABLE alimento_venda (
-	cod_alimento_venda SERIAL PRIMARY KEY,
+CREATE TABLE alimentos_vendas (
 	quantidade INT NOT NULL,
 	cod_alimento INT NOT NULL,
 	cod_venda INT NOT NULL
 );
 
 
-CREATE TABLE alimento (
+CREATE TABLE alimentos (
 	cod_alimento SERIAL PRIMARY KEY,
 	nome VARCHAR(10) NOT NULL,
-	valor DECIMAL(10) NOT NULL,
+	valor DECIMAL(10,2) NOT NULL,
 	categoria VARCHAR(100),
 	marca VARCHAR(100),
 	data_validade DATE NOT NULL,
@@ -55,72 +53,71 @@ CREATE TABLE alimento (
 );
 
 
-CREATE TABLE genero (
+CREATE TABLE generos (
 	cod_genero SERIAL PRIMARY KEY,
 	nome VARCHAR(50) NOT NULL
 );
 
 
-CREATE TABLE filme_genero (
-	cod_filme_genero SERIAL PRIMARY KEY,
+CREATE TABLE filmes_generos (
 	cod_filme INT,
-	cod_genero INT
+	cod_genero INT,
+	PRIMARY KEY(cod_filme, cod_genero)
 );
 
 
-CREATE TABLE filme (
+CREATE TABLE idiomas (
+	cod_idioma SERIAL PRIMARY KEY,
+	nome VARCHAR(15)
+);
+
+CREATE TABLE filmes (
 	cod_filme SERIAL PRIMARY KEY,
 	titulo VARCHAR(100) NOT NULL,
 	data_lancamento DATE,
 	duracao TIME(6) NOT NULL,
 	diretor VARCHAR(100),
 	class_indicativa INT NOT NULL,
-	idioma VARCHAR(100) NOT NULL,
-	imagem_cartaz BIT(10),
-	cod_sessao INT
+	imagem_cartaz_path VARCHAR(30),
+	sinopse VARCHAR(100)
 );
 
 
-CREATE TABLE venda  (
+CREATE TABLE vendas (
 	cod_venda SERIAL PRIMARY KEY,
 	data_venda DATE NOT NULL,
 	forma_pagamento VARCHAR(100) NOT NULL,
-	cod_tipo_venda INT
+	cod_tipo_venda INT NOT NULL,
+	cod_funcionario INT,
+	cod_cliente INT,
+	nota_fiscal INT
 );
 
 
-CREATE TABLE tipo_venda (
+CREATE TABLE tipos_vendas (
 	cod_tipo_venda SERIAL PRIMARY KEY,
 	descricao VARCHAR(100)
 );
 
 
-CREATE TABLE funcionario_venda (
-	cod_funcionario_venda SERIAL PRIMARY KEY,
-	cod_funcionario INT,
-	cod_venda INT
-);
-
-
-CREATE TABLE ingresso_venda (
-	cod_ingresso_venda SERIAL PRIMARY KEY,
-	quantidade INT,
+CREATE TABLE ingressos_vendas (
 	cod_venda INT,
 	cod_ingresso INT
 );
 
 
-CREATE TABLE ingresso (
+CREATE TABLE ingressos (
 	cod_ingresso SERIAL PRIMARY KEY,
 	valor NUMERIC(10,5) NOT NULL,
-	nu_assento INT NOT NULL,
-	primocao BIT(1),
-	nota_fiscal INT,
-	necessidades_especiais BIT(1)
+	no_assento INT NOT NULL,
+	promocao BIT(1),
+	necessidades_especiais BIT(1),
+	cod_sessao INT NOT NULL,
+	UNIQUE(no_assento, cod_sessao)
 );
 
 
-CREATE TABLE cliente (
+CREATE TABLE clientes (
 	cod_cliente SERIAL PRIMARY KEY,
 	cpf VARCHAR(15) NOT NULL,
 	nome VARCHAR(100) NOT NULL,
@@ -130,49 +127,33 @@ CREATE TABLE cliente (
 	bairro VARCHAR(100),
 	logradouro VARCHAR(200),
 	sexo CHAR(1) NOT NULL,
-	telefone INT,
+	telefone VARCHAR(15),
 	cod_usuario INT
 );
 
 
-CREATE TABLE cartao_credito (
-	numero INT NOT NULL,
+CREATE TABLE cartoes_credito (
 	cod_cliente INT NOT NULL,
+	numero INT NOT NULL,
 	data_validade DATE NOT NULL,
 	bandeira VARCHAR(100),
-	cvv INT NOT NULL
+	cvv INT NOT NULL,
+	PRIMARY KEY(cod_cliente, numero)
 );
 
 
-CREATE TABLE cliente_venda (
-	cod_cliente_venda SERIAL PRIMARY KEY,
-	cod_cliente INT,
-	cod_venda INT
-);
-
-
-CREATE TABLE ingresso_sessao (
-	cod_ingresso_sessao SERIAL PRIMARY KEY,
-	cod_sessao INT,
-	cod_ingresso INT
-);
-
-
-CREATE TABLE sessao (
+CREATE TABLE sessoes (
 	cod_sessao SERIAL PRIMARY KEY,
-	horario_sessao TIME(6),
-	data_sessao DATE
+	horario_sessao TIME(6) NOT NULL,
+	data_sessao DATE NOT NULL,
+	cod_filme INT NOT NULL,
+	cod_sala INT NOT NULL,
+	cod_idioma INT NOT NULL,
+	legendado BIT(1)
 );
 
 
-CREATE TABLE sessao_sala (
-	cod_sessao_sala CHAR(10) PRIMARY KEY,
-	cod_sessao INT,
-	cod_sala INT
-);
-
-
-CREATE TABLE sala (
+CREATE TABLE salas (
 	cod_sala SERIAL PRIMARY KEY,
 	numero INT NOT NULL,
 	lugares INT NOT NULL,
@@ -185,59 +166,53 @@ CREATE TABLE sala (
 -- CONSTRAINTS
 --
 
-ALTER TABLE usuario_notificacao ADD CONSTRAINT fk_usu_not_cod_usuario
-FOREIGN KEY (cod_usuario) REFERENCES usuario (cod_usuario);
+ALTER TABLE usuarios_notificacoes ADD CONSTRAINT fk_usu_not_cod_usuario
+FOREIGN KEY (cod_usuario) REFERENCES usuarios (cod_usuario);
 
-ALTER TABLE usuario_notificacao ADD CONSTRAINT fk_usu_not_cod_notificacao
+ALTER TABLE usuarios_notificacoes ADD CONSTRAINT fk_usu_not_cod_notificacao
 FOREIGN KEY (cod_notificacao) REFERENCES notificacoes (cod_notificacao);
 
-ALTER TABLE funcionario ADD CONSTRAINT fk_funcionario_cod_usuario
-FOREIGN KEY (cod_usuario) REFERENCES usuario (cod_usuario);
+ALTER TABLE funcionarios ADD CONSTRAINT fk_funcionario_cod_usuario
+FOREIGN KEY (cod_usuario) REFERENCES usuarios (cod_usuario);
 
-ALTER TABLE alimento_venda ADD CONSTRAINT fk_ali_ven_cod_alimento
-FOREIGN KEY (cod_alimento) REFERENCES alimento (cod_alimento);
+ALTER TABLE alimentos_vendas ADD CONSTRAINT fk_ali_ven_cod_alimento
+FOREIGN KEY (cod_alimento) REFERENCES alimentos (cod_alimento);
 
-ALTER TABLE alimento_venda ADD CONSTRAINT fk_ali_ven_cod_venda
-FOREIGN KEY (cod_venda) REFERENCES venda (cod_venda);
+ALTER TABLE alimentos_vendas ADD CONSTRAINT fk_ali_ven_cod_venda
+FOREIGN KEY (cod_venda) REFERENCES vendas (cod_venda);
 
-ALTER TABLE filme_genero ADD CONSTRAINT fk_fil_gen_cod_filme
-FOREIGN KEY (cod_filme) REFERENCES filme (cod_filme);
+ALTER TABLE filmes_generos ADD CONSTRAINT fk_fil_gen_cod_filme
+FOREIGN KEY (cod_filme) REFERENCES filmes (cod_filme);
 
-ALTER TABLE filme_genero ADD CONSTRAINT fk_fil_gen_cod_genero
-FOREIGN KEY (cod_genero) REFERENCES genero (cod_genero);
+ALTER TABLE filmes_generos ADD CONSTRAINT fk_fil_gen_cod_genero
+FOREIGN KEY (cod_genero) REFERENCES generos (cod_genero);
 
-ALTER TABLE venda ADD CONSTRAINT fk_venda_cod_tipo_venda
-FOREIGN KEY (cod_tipo_venda) REFERENCES tipo_venda (cod_tipo_venda);
+ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_tipo_venda
+FOREIGN KEY (cod_tipo_venda) REFERENCES tipos_vendas (cod_tipo_venda);
 
-ALTER TABLE funcionario_venda ADD CONSTRAINT fk_func_venda_cod_funcionario
-FOREIGN KEY (cod_funcionario) REFERENCES funcionario(cod_funcionario);
+ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_funcionario
+FOREIGN KEY (cod_funcionario) REFERENCES funcionarios (cod_funcionario);
 
-ALTER TABLE funcionario_venda ADD CONSTRAINT fk_func_venda_cod_venda
-FOREIGN KEY (cod_venda) REFERENCES venda(cod_venda);
+ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_cliente
+FOREIGN KEY (cod_cliente) REFERENCES clientes (cod_cliente);
 
-ALTER TABLE ingresso_venda ADD CONSTRAINT fk_ingr_venda_cod_venda
-FOREIGN KEY (cod_venda) REFERENCES venda(cod_venda);
+ALTER TABLE ingressos_vendas ADD CONSTRAINT fk_ingr_venda_cod_venda
+FOREIGN KEY (cod_venda) REFERENCES vendas (cod_venda);
 
-ALTER TABLE ingresso_venda ADD CONSTRAINT fk_ingr_venda_cod_ingresso
-FOREIGN KEY (cod_ingresso) REFERENCES ingresso(cod_ingresso);
+ALTER TABLE ingressos_vendas ADD CONSTRAINT fk_ingr_venda_cod_ingresso
+FOREIGN KEY (cod_ingresso) REFERENCES ingressos (cod_ingresso);
 
-ALTER TABLE cliente ADD CONSTRAINT fk_cliente_cod_usuario
-FOREIGN KEY (cod_usuario) REFERENCES usuario (cod_usuario);
+ALTER TABLE clientes ADD CONSTRAINT fk_cliente_cod_usuario
+FOREIGN KEY (cod_usuario) REFERENCES usuarios (cod_usuario);
 
-ALTER TABLE cliente_venda ADD CONSTRAINT fk_cli_venda_cod_cliente
-FOREIGN KEY (cod_cliente) REFERENCES cliente(cod_cliente);
+ALTER TABLE ingressos ADD CONSTRAINT fk_ingresso_cod_sessao
+FOREIGN KEY (cod_sessao) REFERENCES sessoes (cod_sessao);
 
-ALTER TABLE cliente_venda ADD CONSTRAINT fk_func_venda_cod_venda
-FOREIGN KEY (cod_venda) REFERENCES venda(cod_venda);
+ALTER TABLE sessoes ADD CONSTRAINT fk_sessao_cod_filme
+FOREIGN KEY (cod_filme) REFERENCES filmes (cod_filme);
 
-ALTER TABLE ingresso_sessao ADD CONSTRAINT fk_ingr_sess_cod_sessao
-FOREIGN KEY (cod_sessao) REFERENCES sessao (cod_sessao);
+ALTER TABLE sessoes ADD CONSTRAINT fk_sessao_cod_sala
+FOREIGN KEY (cod_sala) REFERENCES salas (cod_sala);
 
-ALTER TABLE ingresso_sessao ADD CONSTRAINT fk_ingr_sess_cod_ingresso
-FOREIGN KEY (cod_ingresso) REFERENCES ingresso (cod_ingresso);
-
-ALTER TABLE sessao_sala ADD CONSTRAINT fk_sess_sala_cod_sessao
-FOREIGN KEY (cod_sessao) REFERENCES sessao (cod_sessao);
-
-ALTER TABLE sessao_sala ADD CONSTRAINT fk_sess_sala_cod_sala
-FOREIGN KEY (cod_sala) REFERENCES sala (cod_sala);
+ALTER TABLE sessoes ADD CONSTRAINT fk_sessao_cod_idioma
+FOREIGN KEY (cod_idioma) REFERENCES idiomas (cod_idioma);
