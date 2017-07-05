@@ -8,7 +8,6 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cinefilos_backend.negocio.Filme;
 import com.cinefilos_backend.negocio.ISessaoDAO;
 import com.cinefilos_backend.negocio.Sessao;
 
