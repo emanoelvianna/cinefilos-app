@@ -1,8 +1,8 @@
 package com.cinefilos_backend.negocio;
 
 
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 
 public class Filme {
@@ -12,8 +12,8 @@ public class Filme {
 	private Time duracao;
 	private String diretor;
 	private int classificacaoIndicativa;
-	private String idioma;
-	private byte cartaz;
+	private String imagem_cartaz_path;
+	private String sinopse;
 	List<Genero> generos;
 	
 	public void setCodFilme(int codFilme) { this.codFilme = codFilme; } 
@@ -22,11 +22,11 @@ public class Filme {
 	public void setTitulo(String titulo) { this.titulo = titulo; }
 	public String getTitulo() { return titulo; }
 	
-	public void setIdioma(String idioma) { this.idioma = idioma; }
-	public String getIdioma() { return idioma; }
+	public void setCartazPath(String imagem_cartaz_path) { this.imagem_cartaz_path = imagem_cartaz_path; }
+	public String getCartazPath() { return imagem_cartaz_path; }
 	
-	public void setCartaz(byte cartaz) { this.cartaz = cartaz; }
-	public byte getCartaz() { return cartaz; }
+	public void setSinopse(String sinopse) { this.sinopse = sinopse; }
+	public String getSinopse() { return sinopse; }
 	
 	public void setClassificacaoIndicativa(int ci) { this.classificacaoIndicativa = ci; }
 	public int getClassificacaoIndicativa() { return classificacaoIndicativa; }

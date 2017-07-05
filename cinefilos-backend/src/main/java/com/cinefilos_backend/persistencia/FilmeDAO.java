@@ -13,15 +13,15 @@ import com.cinefilos_backend.negocio.IFilmeDao;
 
 
 public class FilmeDAO implements IFilmeDao {
-
+	
 	public List<Filme> listarTodos() throws DBException {
 		List<Filme> lista = new ArrayList<Filme>();
 		Filme f = null;
 		
 		try(Connection conn = Conexao.getConexao()) {
-			String sql = "SELECT f.cod_filme, f.titulo, f.data_lancamento, f.duracao, "
-					+ "	f.diretor, f.class_indicativa, f.idioma "
-					+ "FROM filmes f";
+			String sql = "SELECT cod_filme, titulo, data_lancamento, duracao, "
+					+ "diretor, class_indicativa, imagem_cartaz_path, sinopse "
+					+ "FROM filmes";
 					
 			Statement cmd = conn.createStatement();
 			ResultSet rs = cmd.executeQuery(sql);
@@ -34,7 +34,8 @@ public class FilmeDAO implements IFilmeDao {
 				f.setDuracao(rs.getTime("duracao"));
 				f.setDiretor(rs.getString("diretor"));
 				f.setClassificacaoIndicativa(rs.getInt("class_indicativa"));
-				f.setIdioma(rs.getString("idioma"));
+				f.setCartazPath(rs.getString("imagem_cartaz_path"));
+				f.setSinopse(rs.getString("sinopse"));
 				lista.add(f);
 			}
 		} catch(Exception e) {
@@ -46,15 +47,17 @@ public class FilmeDAO implements IFilmeDao {
 	@Override
 	public void cadastrar(Filme filme) throws DBException {
 		try(Connection conn = Conexao.getConexao()) {
-			String sql = "INSERT INTO filmes (titulo, duracao, diretor, class_indicativa, idioma) " +
-						"VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO filmes (titulo, data_lancamento, duracao, diretor, class_indicativa, imagem_cartaz_path, sinopse) " +
+						"VALUES (?, ?, ?, ?, ?, ?, ?)";
 								
 			PreparedStatement cmd = conn.prepareStatement(sql);
-			cmd.setString(1,  filme.getTitulo());
-			cmd.setTime(2, filme.getDuracao());
-			cmd.setString(3, filme.getDiretor());
-			cmd.setInt(4,  filme.getClassificacaoIndicativa());
-			cmd.setString(5, filme.getIdioma());
+			cmd.setString(1, filme.getTitulo());
+			cmd.setDate(2, filme.getDataLancamento());
+			cmd.setTime(3, filme.getDuracao());
+			cmd.setString(4, filme.getDiretor());
+			cmd.setInt(5, filme.getClassificacaoIndicativa());
+			cmd.setString(6, filme.getCartazPath());
+			cmd.setString(7, filme.getSinopse());
 			cmd.executeUpdate();
 			
 			cmd.close();
@@ -71,7 +74,7 @@ public class FilmeDAO implements IFilmeDao {
 			String sql = "DELETE FROM filmes WHERE cod_filme = ?";
 											
 			PreparedStatement cmd = conn.prepareStatement(sql);
-			cmd.setInt(1,  filme.getCodFilme());
+			cmd.setInt(1, filme.getCodFilme());
 			cmd.executeUpdate();
 			
 			cmd.close();
@@ -94,28 +97,30 @@ public class FilmeDAO implements IFilmeDao {
 		
 		try(Connection conn = Conexao.getConexao()) {
 			String sql = "SELECT cod_filme, titulo, data_lancamento, duracao, "
-					+ "	diretor, class_indicativa, imagem_cartaz_path, sinopse "
-					+ "FROM filmes WHERE cod_filme=1";
-					
+					+ "diretor, class_indicativa, imagem_cartaz_path, sinopse "
+					+ "FROM filmes WHERE cod_filme=?";					
 			
 			PreparedStatement cmd = conn.prepareStatement(sql);
+			cmd.setInt(1, codigo);
 			System.out.println("SQL=" + cmd.toString());
-			//cmd.setInt(1, codigo);
-			ResultSet rs = cmd.executeQuery(sql);
+			ResultSet rs = cmd.executeQuery();
 			
 			while(rs.next()) {
 				f = new Filme();
 				f.setCodFilme(rs.getInt("cod_filme"));
-				//f.setTitulo(rs.getString("titulo"));
-				//f.setDataLancamento(rs.getDate("data_lancamento"));
-				//f.setDuracao(rs.getTime("duracao"));
-				//f.setDiretor(rs.getString("diretor"));
-				//f.setClassificacaoIndicativa(rs.getInt("class_indicativa"));
+				f.setTitulo(rs.getString("titulo"));
+				f.setDataLancamento(rs.getDate("data_lancamento"));
+				f.setDuracao(rs.getTime("duracao"));
+				f.setDiretor(rs.getString("diretor"));
+				f.setClassificacaoIndicativa(rs.getInt("class_indicativa"));
+				f.setCartazPath(rs.getString("imagem_cartaz_path"));
+				f.setSinopse(rs.getString("sinopse"));
 			}
 		} catch(Exception e) {
+			e.printStackTrace();
 			throw new DBException("Falha ao conectar ao BD");
 		}
-		return f;	
+		return f;
 	}
 
 	@Override
@@ -129,7 +134,7 @@ public class FilmeDAO implements IFilmeDao {
 			cmd.setTime(2, filme.getDuracao());
 			cmd.setString(3, filme.getDiretor());
 			cmd.setInt(4,  filme.getClassificacaoIndicativa());
-			cmd.setString(5, filme.getIdioma());
+			//cmd.setString(5, filme.getIdioma());
 			cmd.setInt(6, filme.getCodFilme());
 			cmd.executeUpdate();
 			

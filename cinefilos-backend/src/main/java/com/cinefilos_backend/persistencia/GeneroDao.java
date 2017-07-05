@@ -15,7 +15,7 @@ public class GeneroDao implements IGeneroDao {
 	@Override
 	public void cadastrar(Genero genero) throws DBException {
 		try(Connection conn = Conexao.getConexao()) {
-			String sql = "INSERT INTO genero (nome) " +
+			String sql = "INSERT INTO generos (nome) " +
 						"VALUES (?)";
 								
 			PreparedStatement cmd = conn.prepareStatement(sql);
@@ -35,12 +35,12 @@ public class GeneroDao implements IGeneroDao {
 		Genero g = null;
 		
 		try(Connection conn = Conexao.getConexao()) {
-			String sql = "SELECT cod_genero, nome FROM genero" +
+			String sql = "SELECT cod_genero, nome FROM generos" +
 						"WHERE nome=?";
 					
 			PreparedStatement cmd = conn.prepareStatement(sql);
 			cmd.setString(1, nome);
-			ResultSet rs = cmd.executeQuery(sql);
+			ResultSet rs = cmd.executeQuery();
 			
 			g = new Genero();
 			g.setCodGenero(rs.getInt("cod_genero"));
@@ -56,12 +56,12 @@ public class GeneroDao implements IGeneroDao {
 		Genero g = null;
 		
 		try(Connection conn = Conexao.getConexao()) {
-			String sql = "SELECT cod_genero, nome FROM genero" +
+			String sql = "SELECT cod_genero, nome FROM generos " +
 						"WHERE cod_genero=?";
 					
 			PreparedStatement cmd = conn.prepareStatement(sql);
 			cmd.setInt(1, codigo);
-			ResultSet rs = cmd.executeQuery(sql);
+			ResultSet rs = cmd.executeQuery();
 			
 			g = new Genero();
 			g.setCodGenero(rs.getInt("cod_genero"));
@@ -75,7 +75,7 @@ public class GeneroDao implements IGeneroDao {
 	@Override
 	public void excluir(Genero genero) throws DBException {
 		try(Connection conn = Conexao.getConexao()) {
-			String sql = "DELETE FROM genero WHERE cod_genero = ?";
+			String sql = "DELETE FROM generos WHERE cod_genero = ?";
 											
 			PreparedStatement cmd = conn.prepareStatement(sql);
 			cmd.setInt(1, genero.getCodGenero());
@@ -95,7 +95,7 @@ public class GeneroDao implements IGeneroDao {
 		Genero g = null;
 		
 		try(Connection conn = Conexao.getConexao()) {
-			String sql = "SELECT cod_genero, nome FROM genero";
+			String sql = "SELECT cod_genero, nome FROM generos";
 					
 			Statement cmd = conn.createStatement();
 			ResultSet rs = cmd.executeQuery(sql);
