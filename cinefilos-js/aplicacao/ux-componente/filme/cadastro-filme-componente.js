@@ -10,19 +10,34 @@
 
   Controller.$inject = [
     'modelo.FilmeFactory',
-    'FilmeComunicacaoFactory'
+    'FilmeComunicacaoFactory',
+    'GeneroComunicacaoFactory'
   ];
 
-  function Controller(filmeFactory, filmeComunicacao) {
+  function Controller(filmeFactory, FilmeComunicacaoFactory, GeneroComunicacaoFactory) {
     var self = this;
+    self.generos = [];
 
     self.cadastrar = cadastrar;
 
+    init();
+
+    function init() {
+      getGeneros();
+    }
+
     function cadastrar(filme) {
       var novoFilme = new filmeFactory.create(filme.titulo, filme.dataLancamento, filme.duracao, filme.diretor, filme.classificacaoIndicativa, filme.idioma, filme.imagem);
-      filmeComunicacao.cadastrar(novoFilme.toJson())
-      console.log(novoFilme);
-      //console.log(filme.duracao);
+      FilmeComunicacaoFactory.cadastrar(novoFilme.toJson())
     }
+
+    function getGeneros() {
+      GeneroComunicacaoFactory.listar().$promise.then(function (data) {
+        console.log(data);
+        self.generos = data.generos;
+      });
+    }
+
+
   }
 }());

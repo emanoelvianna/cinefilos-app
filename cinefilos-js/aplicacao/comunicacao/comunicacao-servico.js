@@ -1,6 +1,7 @@
 var comunicacao = angular.module('comunicacao', ['ngResource']);
 
-var baseUrl = 'http://localhost:8080';
+//var baseUrl = 'http://localhost:8080';
+var baseUrl = 'http://179.187.76.61:8080';
 
 /* usuário */
 comunicacao.factory('UsuarioComunicacaoFactory', function ($resource) {
@@ -13,16 +14,25 @@ comunicacao.factory('UsuarioComunicacaoFactory', function ($resource) {
 
 /* filme */
 comunicacao.factory('FilmeComunicacaoFactory', function ($resource) {
-    return $resource(baseUrl + '/ngdemo/web/users', {}, {
+    return $resource({}, {}, {
         listar: { url: baseUrl + '/cinefilos_app/filmes/listar', method: 'GET', params: { id: '@id' } },
         cadastrar: { url: baseUrl + '/cinefilos_app/filmes/cadastrar', method: 'POST', params: { id: '@id' } },
         excluir: { url: baseUrl + '/cinefilos_app/filmes/excluir', method: 'DELETE', params: { id: '@id' } }
     })
 });
 
+/* genero */
+comunicacao.factory('GeneroComunicacaoFactory', function ($resource) {
+    return $resource({}, {}, {
+        listar: { url: baseUrl + '/cinefilos_app/generos/listar', method: 'GET' },
+        cadastrar: { url: baseUrl + '/cinefilos_app/generos/cadastrar', method: 'POST', params: { id: '@id' } },
+        excluir: { url: baseUrl + '/cinefilos_app/generos/excluir', method: 'DELETE', params: { id: '@id' } }
+    })
+});
+
 /* ingresso */
 comunicacao.factory('IngressoComunicacaoFactory', function ($resource) {
-    return $resource(baseUrl + '/ngdemo/web/users', {}, {
+    return $resource({}, {}, {
         listar: { url: baseUrl + '/cinefilos_app/ingressos/listar', method: 'GET', params: { id: '@id' } },
         cadastrar: { url: baseUrl + '/cinefilos_app/ingressos/cadastrar', method: 'POST', params: { id: '@id' } },
         excluir: { url: baseUrl + '/cinefilos_app/ingressos/excluir', method: 'DELETE', params: { id: '@id' } }
@@ -31,11 +41,9 @@ comunicacao.factory('IngressoComunicacaoFactory', function ($resource) {
 
 /* backup */
 comunicacao.factory('BackupComunicacaoFactory', function ($resource) {
-  console.log("Executou");
     return $resource({}, {}, {
-
-        listarBackups: { url: baseUrl + '/cinefilos_app/listarBackup', method: 'GET'},
+        listarBackups: { url: baseUrl + '/cinefilos_app/listarBackup', method: 'GET' },
         fazerBackup: { url: baseUrl + '/cinefilos_app/fazerBackup', method: 'GET' },
-        restaurarBackup: { url: baseUrl + '/cinefilos_app/restaurarBackup', method: 'DELETE', params: { id: '@id' } }
+        restaurarBackup: { url: baseUrl + '/cinefilos_app/restaurarBackup', method: 'GET', params: { id: '@id' } }
     })
 });

@@ -9,44 +9,57 @@
     });
 
   Controller.$inject = [
+    '$http',
     '$mdDialog',
     'BackupComunicacaoFactory'
   ];
 
-  function Controller($mdDialog, BackupComunicacaoFactory) {
+  function Controller($http, $mdDialog, BackupComunicacaoFactory) {
     var self = this;
     self.datas = [];
+    self.dataSelecionada;
 
-    self.fazer = fazer;
+    self.realizar = realizar;
     self.restaurar = restaurar;
     self.listar = listar;
 
-    /*
-    self.datas = [
-      { "data": "02/07/2017 21:32:13", "arquivo": "cinefilos-backup-20170702213213.sql" },
-      { "data": "02/07/2017 21:32:51", "arquivo": "cinefilos-backup-20170702213251.sql" },
-      { "data": "02/07/2017 22:09:28", "arquivo": "cinefilos-backup-20170702220928.sql" }
-    ]
-    */
+    init();
 
-    listar();
-
-    function fazer() {
-      var data = new Date();
-      BackupComunicacaoFactory.fazerBackup();
-      mensagemDeRealizacao();
+    function init() {
+      listar();
     }
 
-    function restaurar(data) {
-      BackupComunicacaoFactory.restaurarBackup(data);
+    function realizar() {
+      BackupComunicacaoFactory.fazerBackup();
+      mensagemDeRealizacao();
+      listar();
+    }
+
+    function restaurar() {
+      //BackupComunicacaoFactory.restaurarBackup();
+      httpGet(buscarUrl());
       mensagemDeRestauracao();
     }
 
     function listar() {
-      self.datas = BackupComunicacaoFactory.listarBackups();
+      BackupComunicacaoFactory.listarBackups().$promise.then(function (data) {
+        self.datas = data.backups;
+      });
+    }
 
-      console.log(self.datas);
-    //  return self.datas;
+    function buscarUrl() {
+      var result = self.datas.filter(function (elem, i, array) {
+        return elem.data === self.dataSelecionada;
+      });
+      console.log(result[0]);
+      return result[0].restore_url;
+    }
+
+    function httpGet(theUrl) {
+      $http.get(theUrl)
+        .then(function (response) {
+          //response
+        });
     }
 
     function mensagemDeRealizacao() {

@@ -27,8 +27,8 @@
         <md-input-container class="md-block" flex-gt-sm>
             <label>Genero</label>
             <md-select ng-model="filme.genero">
-                <md-option ng-repeat="genero in generos" value="{{state.abbrev}}">
-                    {{state.abbrev}}
+                <md-option ng-repeat="genero in $ctrl.generos" value="{{genero.nome}}">
+                    {{genero.nome}}
                 </md-option>
             </md-select>
         </md-input-container>
