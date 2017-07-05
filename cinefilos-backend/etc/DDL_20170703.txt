@@ -101,13 +101,14 @@ CREATE TABLE vendas (
 
 CREATE TABLE ingressos_vendas (
 	cod_venda INT,
-	cod_ingresso INT
+	cod_ingresso INT,
+	PRIMARY KEY(cod_venda, cod_ingresso)
 );
 
 
 CREATE TABLE ingressos (
 	cod_ingresso SERIAL PRIMARY KEY,
-	valor NUMERIC(10,5) NOT NULL,
+	valor NUMERIC(10,2) NOT NULL,
 	no_assento INT NOT NULL,
 	promocao BIT(1),
 	necessidades_especiais BIT(1),
