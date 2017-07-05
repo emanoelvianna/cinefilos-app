@@ -8,6 +8,8 @@ public class Sessao {
 	private Date data;
 	Filme filme;
 	Sala sala;
+	private int cod_idioma;
+	private char legendado;
 	
 	public void setCodSessao(int cod_sessao) { this.cod_sessao = cod_sessao; }
 	public int getCodSessao() { return cod_sessao; }
@@ -19,4 +21,8 @@ public class Sessao {
 	public Filme getFile() { return filme; }
 	public void setSala(Sala sala) { this.sala = sala; }
 	public Sala getSala() { return sala; }
+	public void setCodIdioma(int cod_idioma) { this.cod_idioma = cod_idioma; }
+	public int getCodIdioma() { return cod_idioma; }
+	public void setLegendado(char legendado) { this.legendado = legendado; }
+	public char getLegendado() { return legendado; }
 }

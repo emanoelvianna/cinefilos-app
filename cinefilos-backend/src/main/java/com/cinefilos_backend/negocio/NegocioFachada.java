@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import com.cinefilos_backend.persistencia.DBException;
 import com.cinefilos_backend.persistencia.FilmeDAO;
 import com.cinefilos_backend.persistencia.GeneroDao;
+import com.cinefilos_backend.persistencia.SessaoDao;
 import com.cinefilos_backend.persistencia.UsuarioDao;
 import com.cinefilos_backend.negocio.Filme;
 import com.google.gson.Gson;
@@ -283,7 +284,53 @@ public class NegocioFachada {
 		
 		return Response.status(200).entity(result).build();
 	}
+
+	
+	/*
+	 * Sessoes
+	 */
+	
+	@GET
+	@Path("/sessoes/listar")
+	@Produces({ "application/json" })
+	public String buscarTodasSessoes() {
+		ISessaoDAO db = new SessaoDao();
+		Gson gson = new Gson();
+		String json = null;
 		
+		List<Sessao> sessoes = null;
+		
+		try {
+			sessoes = db.listarTodas();
+			json = gson.toJson(sessoes);
+		} catch(DBException e) {
+			return "{ \"message\": \"Erro ao conectar no BD.\" }";
+		}
+		return "{ \"sessoes\": " + json + "}";
+	}
+	
+	/*
+	
+	@POST
+	@Path("/generos/cadastrar")
+	@Consumes({ "application/json"})
+	public Response cadastrarGenero(Genero genero) {
+		String result = "Genero criado" + genero;
+		
+		IGeneroDao db = new GeneroDao();
+		
+		try {
+			db.cadastrar(genero);
+		} catch(DBException e) {
+			result = "Falha ao criar genero";
+			return Response.status(400).entity(result).build();
+		}
+		
+		return Response.status(201).entity(result).build();
+	}
+	
+	*/
+	
 	
 	/*
 	 * 
