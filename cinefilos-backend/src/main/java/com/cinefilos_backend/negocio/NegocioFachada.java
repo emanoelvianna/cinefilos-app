@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import com.cinefilos_backend.persistencia.DBException;
 import com.cinefilos_backend.persistencia.FilmeDAO;
 import com.cinefilos_backend.persistencia.GeneroDao;
+import com.cinefilos_backend.persistencia.IngressoDao;
 import com.cinefilos_backend.persistencia.SessaoDao;
 import com.cinefilos_backend.persistencia.UsuarioDao;
 import com.cinefilos_backend.negocio.Filme;
@@ -330,6 +331,30 @@ public class NegocioFachada {
 	}
 	
 	*/
+	
+	
+	/*
+	 * 
+	 * Ingressos
+	 */
+	
+	@POST
+	@Path("/ingressos/cadastrar")
+	@Consumes({ "application/json"})
+	public Response cadastrarIngresso(String ingresso) {
+		String result = "Ingresso criado" + ingresso;
+		System.out.println("Criando ingresso " + ingresso);
+		IIngressoDao db = new IngressoDao();
+		
+		try {
+			db.cadastrarIngresso(ingresso);
+		} catch(DBException e) {
+			result = "Falha ao criar genero";
+			return Response.status(400).entity(result).build();
+		}
+		
+		return Response.status(201).entity(result).build();
+	}
 	
 	
 	/*

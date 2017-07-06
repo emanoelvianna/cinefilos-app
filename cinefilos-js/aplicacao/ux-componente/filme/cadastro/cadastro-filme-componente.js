@@ -27,7 +27,7 @@
     }
 
     function cadastrar(filme) {
-      var novoFilme = new filmeFactory.create(filme.titulo, filme.dataLancamento, filme.duracao, filme.diretor, filme.classificacaoIndicativa, filme.idioma, filme.imagem);
+      var novoFilme = new filmeFactory.create(filme.titulo, filme.dataLancamento, filme.duracao, filme.diretor, filme.classificacaoIndicativa, filme.imagemCartazPath, filme.sinopse);
       FilmeComunicacaoFactory.cadastrar(novoFilme.toJson());
     }
 
