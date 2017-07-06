@@ -10,24 +10,36 @@
 
   Controller.$inject = [
     '$state',
-    '$stateParams'
+    '$stateParams',
+    'SessaoComunicacaoFactory'
   ];
 
-  function Controller($state, $stateParams) {
+  function Controller($state, $stateParams, SessaoComunicacaoFactory) {
     var self = this;
-    self.imagePath = 'aplicacao/recurso/imagem/poster.jpg';
-
-    self.sessoes = [
-      { 'horario': '02:00:00 PM', 'data': 'jul 3, 2017' },
-      { 'horario': '02:00:00 PM', 'data': 'jul 3, 2017' }
-    ];
+    self.sessoes;
+    self.filme;
+    self.imagePath;
 
     /* metodos publicos */
     self.$onInit = onInit;
+    self.comprar = comprar;
 
     function onInit() {
+      resolverSessoes();
       self.filme = $stateParams.filme;
-      console.log(self.filme);
+      self.imagePath = $stateParams.filme.imagem_cartaz_path;
+    }
+
+    function comprar() {
+      $state.go('home.venderIngresso', { filme: self.filme });
+    }
+
+    function resolverSessoes() {
+      SessaoComunicacaoFactory.listar().$promise.then(function (data) {
+        self.sessoes = data.sessoes.filter(function (elem, i, array) {
+          return self.filme.titulo === elem.filme.titulo;
+        });
+      });
     }
   }
 }());

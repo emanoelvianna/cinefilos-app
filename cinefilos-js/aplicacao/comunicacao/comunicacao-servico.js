@@ -38,6 +38,22 @@ comunicacao.factory('IngressoComunicacaoFactory', function ($resource) {
     })
 });
 
+/* ingresso */
+comunicacao.factory('SessaoComunicacaoFactory', function ($resource) {
+    return $resource({}, {}, {
+        listar: { url: baseUrl + '/cinefilos_app/sessoes/listar', method: 'GET' }
+    })
+});
+
+/* ingresso */
+comunicacao.factory('IngressoComunicacaoFactory', function ($resource) {
+    return $resource({}, {}, {
+        listar: { url: baseUrl + '/cinefilos_app/ingressos/listar', method: 'GET', params: { id: '@id' } },
+        cadastrar: { url: baseUrl + '/cinefilos_app/ingressos/cadastrar', method: 'POST', params: { id: '@id' } },
+        excluir: { url: baseUrl + '/cinefilos_app/ingressos/excluir', method: 'DELETE', params: { id: '@id' } }
+    })
+});
+
 /* backup */
 comunicacao.factory('BackupComunicacaoFactory', function ($resource) {
     return $resource({}, {}, {

@@ -341,7 +341,7 @@ public class NegocioFachada {
 	@POST
 	@Path("/ingressos/cadastrar")
 	@Consumes({ "application/json"})
-	public Response cadastrarIngresso(String ingresso) {
+	public Response cadastrarIngresso(Ingresso ingresso) {
 		String result = "Ingresso criado" + ingresso;
 		System.out.println("Criando ingresso " + ingresso);
 		IIngressoDao db = new IngressoDao();

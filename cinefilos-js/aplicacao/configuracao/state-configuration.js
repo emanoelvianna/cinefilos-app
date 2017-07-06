@@ -42,7 +42,10 @@
             })
             .state('home.venderIngresso', {
                 url: '/vender-ingresso',
-                template: '<ingresso-componente></ingresso-componente>'
+                template: '<ingresso-componente></ingresso-componente>',
+                params: {
+                    filme: null
+                }
             })
             .state('home.backup', {
                 url: '/backup',

@@ -12,15 +12,21 @@
     '$mdDialog',
     '$scope',
     '$rootElement',
+    '$stateParams',
     'modelo.IngressoFactory',
     'IngressoComunicacaoFactory',
   ];
 
-  function Controller($mdDialog, $scope, $rootElement, IngressoFactory, IngressoComunicacaoFactory) {
+  function Controller($mdDialog, $scope, $rootElement, $stateParams, IngressoFactory, IngressoComunicacaoFactory) {
     var self = this;
+    self.filme;
 
     self.comprar = comprar;
     self.quantidadePoltronas = quantidadePoltronas;
+
+    function onInit() {
+      self.filme = $stateParams.filme;
+    }
 
     function comprar(numero) {
       $scope.numero = numero;
