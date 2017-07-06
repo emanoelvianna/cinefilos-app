@@ -109,6 +109,6 @@ public class GeneroDao implements IGeneroDao {
 		} catch(Exception e) {
 			throw new DBException("Falha ao conectar ao BD");
 		}
-		return lista;	}
-
+		return lista;
+	}
 }

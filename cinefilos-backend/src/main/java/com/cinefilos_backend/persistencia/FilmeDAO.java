@@ -11,7 +11,6 @@ import com.cinefilos_backend.negocio.Filme;
 import com.cinefilos_backend.negocio.IFilmeDao;
 
 
-
 public class FilmeDAO implements IFilmeDao {
 	
 	public List<Filme> listarTodos() throws DBException {
@@ -47,8 +46,8 @@ public class FilmeDAO implements IFilmeDao {
 	@Override
 	public void cadastrar(Filme filme) throws DBException {
 		try(Connection conn = Conexao.getConexao()) {
-			String sql = "INSERT INTO filmes (titulo, data_lancamento, duracao, diretor, class_indicativa, imagem_cartaz_path, sinopse) " +
-						"VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO filmes (titulo, data_lancamento, duracao, diretor, class_indicativa) " +
+						"VALUES (?, ?, ?, ?, ?)";
 								
 			PreparedStatement cmd = conn.prepareStatement(sql);
 			cmd.setString(1, filme.getTitulo());
@@ -56,14 +55,14 @@ public class FilmeDAO implements IFilmeDao {
 			cmd.setTime(3, filme.getDuracao());
 			cmd.setString(4, filme.getDiretor());
 			cmd.setInt(5, filme.getClassificacaoIndicativa());
-			cmd.setString(6, filme.getCartazPath());
-			cmd.setString(7, filme.getSinopse());
+			//cmd.setString(6, filme.getCartazPath());
+			//cmd.setString(7, filme.getSinopse());
 			cmd.executeUpdate();
 			
 			cmd.close();
 			conn.close();
 		} catch(Exception e) {
-			e.printStackTrace(System.out);
+			e.printStackTrace();
 			throw new DBException("Falha ao conectar ao BD");
 		}
 	}
@@ -87,8 +86,34 @@ public class FilmeDAO implements IFilmeDao {
 
 	@Override
 	public Filme buscarPorNome(String nome) throws DBException {
-		// TODO Auto-generated method stub
-		return null;
+		Filme f = null;
+		
+		try(Connection conn = Conexao.getConexao()) {
+			String sql = "SELECT cod_filme, titulo, data_lancamento, duracao, "
+					+ "diretor, class_indicativa, imagem_cartaz_path, sinopse "
+					+ "FROM filmes WHERE titulo=?";					
+			
+			PreparedStatement cmd = conn.prepareStatement(sql);
+			cmd.setString(1, nome);
+			System.out.println("SQL=" + cmd.toString());
+			ResultSet rs = cmd.executeQuery();
+			
+			while(rs.next()) {
+				f = new Filme();
+				f.setCodFilme(rs.getInt("cod_filme"));
+				f.setTitulo(rs.getString("titulo"));
+				f.setDataLancamento(rs.getDate("data_lancamento"));
+				f.setDuracao(rs.getTime("duracao"));
+				f.setDiretor(rs.getString("diretor"));
+				f.setClassificacaoIndicativa(rs.getInt("class_indicativa"));
+				f.setCartazPath(rs.getString("imagem_cartaz_path"));
+				f.setSinopse(rs.getString("sinopse"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new DBException("Falha ao conectar ao BD");
+		}
+		return f;
 	}
 
 	@Override
@@ -126,16 +151,18 @@ public class FilmeDAO implements IFilmeDao {
 	@Override
 	public void atualizar(Filme filme) throws DBException {
 		try(Connection conn = Conexao.getConexao()) {
-			String sql = "UPDATE filmes SET titulo=?, duracao=?, diretor=?, class_indicativa=?, idioma=? " +
+			String sql = "UPDATE filmes SET titulo=?, data_lancamento=?, duracao=?, diretor=?, class_indicativa=?, "+
+						" imagem_cartaz_path=?, sinopse=? " +
 						"WHERE cod_filme=?";
 								
 			PreparedStatement cmd = conn.prepareStatement(sql);
 			cmd.setString(1,  filme.getTitulo());
-			cmd.setTime(2, filme.getDuracao());
-			cmd.setString(3, filme.getDiretor());
-			cmd.setInt(4,  filme.getClassificacaoIndicativa());
-			//cmd.setString(5, filme.getIdioma());
-			cmd.setInt(6, filme.getCodFilme());
+			cmd.setDate(2, filme.getDataLancamento());
+			cmd.setTime(3, filme.getDuracao());
+			cmd.setString(4, filme.getDiretor());
+			cmd.setInt(5,  filme.getClassificacaoIndicativa());
+			cmd.setString(6, filme.getCartazPath());
+			cmd.setString(7, filme.getSinopse());
 			cmd.executeUpdate();
 			
 			cmd.close();
