@@ -4,8 +4,11 @@
         .module('principal')
         .config(StateConfiguration);
 
-
-    StateConfiguration.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+    StateConfiguration.$inject = [
+        '$stateProvider',
+        '$urlRouterProvider',
+        '$locationProvider'
+    ];
 
     function StateConfiguration($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -23,12 +26,19 @@
                 template: '<cadastro-usuario-componente></cadastro-usuario-componente>'
             })
             .state('home.cadastraFilme', {
-                url: '/cadastro-filme',
+                url: '/cadastra-filme',
                 template: '<filme-componente></filme-componente>'
             })
             .state('home.listarFilme', {
                 url: '/listar-filme',
                 template: '<listar-filme-componente></listar-filme-componente>'
+            })
+            .state('home.mostrarFilme', {
+                url: '/mostrar-filme',
+                template: '<mostrar-filme-componente></mostrar-filme-componente>',
+                params: {
+                    filme: null
+                }
             })
             .state('home.venderIngresso', {
                 url: '/vender-ingresso',

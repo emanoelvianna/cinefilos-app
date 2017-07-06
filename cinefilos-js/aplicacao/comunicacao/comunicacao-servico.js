@@ -1,7 +1,6 @@
 var comunicacao = angular.module('comunicacao', ['ngResource']);
 
-//var baseUrl = 'http://localhost:8080';
-var baseUrl = 'http://179.187.76.61:8080';
+var baseUrl = 'http://localhost:8080';
 
 /* usuário */
 comunicacao.factory('UsuarioComunicacaoFactory', function ($resource) {

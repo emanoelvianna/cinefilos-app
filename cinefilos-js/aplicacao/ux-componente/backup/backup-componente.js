@@ -30,15 +30,14 @@
     }
 
     function realizar() {
-      BackupComunicacaoFactory.fazerBackup();
-      mensagemDeRealizacao();
-      listar();
+      BackupComunicacaoFactory.fazerBackup().$promise.then(function (data) {
+        mensagemDeRealizacao();
+        listar();
+      });
     }
 
     function restaurar() {
-      //BackupComunicacaoFactory.restaurarBackup();
       httpGet(buscarUrl());
-      mensagemDeRestauracao();
     }
 
     function listar() {
@@ -51,14 +50,13 @@
       var result = self.datas.filter(function (elem, i, array) {
         return elem.data === self.dataSelecionada;
       });
-      console.log(result[0]);
       return result[0].restore_url;
     }
 
     function httpGet(theUrl) {
       $http.get(theUrl)
         .then(function (response) {
-          //response
+          mensagemDeRestauracao();
         });
     }
 

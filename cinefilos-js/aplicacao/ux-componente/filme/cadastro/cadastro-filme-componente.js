@@ -4,7 +4,7 @@
   angular
     .module('uxComponente')
     .component('filmeComponente', {
-      templateUrl: 'aplicacao/ux-componente/filme/cadastro-filme-template.html',
+      templateUrl: 'aplicacao/ux-componente/filme/cadastro/cadastro-filme-template.html',
       controller: Controller,
     });
 
@@ -28,12 +28,11 @@
 
     function cadastrar(filme) {
       var novoFilme = new filmeFactory.create(filme.titulo, filme.dataLancamento, filme.duracao, filme.diretor, filme.classificacaoIndicativa, filme.idioma, filme.imagem);
-      FilmeComunicacaoFactory.cadastrar(novoFilme.toJson())
+      FilmeComunicacaoFactory.cadastrar(novoFilme.toJson());
     }
 
     function getGeneros() {
       GeneroComunicacaoFactory.listar().$promise.then(function (data) {
-        console.log(data);
         self.generos = data.generos;
       });
     }
