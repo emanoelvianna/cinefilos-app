@@ -1,14 +1,35 @@
-<md-card>
-    <img ng-src="aplicacao/recurso/imagem/poster.jpg" class="md-card-image" alt="Washed Out">
-    <md-card-title>
-        <md-card-title-text>
-            <span class="md-headline">Action buttons</span>
-        </md-card-title-text>
-    </md-card-title>
-    <md-card-content>
-        <p>
-            The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest
-            Greene's musical language: feel it. It's a simple request, as well...
-        </p>
-    </md-card-content>
-</md-card>
+<div ng-cloak>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="30" layout="column">
+            <md-card md-theme-watch>
+                <img ng-src="{{$ctrl.imagePath}}" class="md-card-image">
+            </md-card>
+        </div>
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{$ctrl.filme.titulo}}</span>
+                        <span class="md-subhead">Data de lançamento: {{$ctrl.filme.dataLancamento}}</span>
+                        <span class="md-subhead">Direção: {{$ctrl.filme.diretor}}</span>
+                        <span class="md-subhead">Duração: {{$ctrl.filme.duracao}}</span>
+                        <span class="md-subhead">Classificação Indicativa: {{$ctrl.filme.classificacaoIndicativa}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="item in $ctrl.sessoes">
+                        <div class="md-list-item-text">
+                            <h3>{{item}}</h3>
+                            <h4>{{item.who}}</h4>
+                            <p>{{item.notes}}</p>
+                        </div>
+                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                            <md-button class="md-raised md-primary" ng-click="$ctrl.cadastrar(filme)">Comprar ingresso</md-button>
+                        </section>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </div>
+    </md-content>
+</div>

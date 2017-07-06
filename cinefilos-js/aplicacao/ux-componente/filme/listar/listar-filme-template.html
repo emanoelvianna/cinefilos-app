@@ -1,7 +1,7 @@
 <md-content>
     <md-list flex>
         <md-list-item class="md-3-line" ng-repeat="filme in $ctrl.filmes" ng-click="$ctrl.navegar(filme)">
-            <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+            <img ng-src="aplicacao/recurso/imagem/clapperboard.svg" class="md-avatar" />
             <div class="md-list-item-text" layout="column">
                 <h3>Titulo: {{ filme.titulo }}</h3>
                 <h4>Data de lançamento: {{ filme.dataLancamento }}</h4>
