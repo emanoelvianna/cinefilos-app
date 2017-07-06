@@ -149,7 +149,7 @@ CREATE TABLE sessoes (
 	cod_filme INT NOT NULL,
 	cod_sala INT NOT NULL,
 	cod_idioma INT NOT NULL,
-	legendado CHAR(1)
+	legendado INT
 );
 
 

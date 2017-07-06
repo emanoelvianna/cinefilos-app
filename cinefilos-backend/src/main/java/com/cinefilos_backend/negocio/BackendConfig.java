@@ -8,7 +8,6 @@ import com.google.gson.stream.JsonReader;
 
 public class BackendConfig {
 	private static BackendConfig instance = new BackendConfig();
-	
 	private String backend_server;
 	private String db_server;
 	private String db_port;
@@ -20,7 +19,7 @@ public class BackendConfig {
 	private String bkp_path;
 	private String bkp_backup_cmd;
 	private String bkp_restore_cmd;
-
+	
 	public BackendConfig() {
 		
 	}
@@ -45,6 +44,14 @@ public class BackendConfig {
 		try {
 			reader = new JsonReader(new FileReader(filename));
 		} catch (IOException e) {
+			/*
+			backend_server = "http://localhost:8080/";
+			db_server = "10.11.254.125";
+			db_port = "5432";
+			db_name = "cinefilos_db";
+			db_username = "mauricio";
+			db_password = "senha";
+			*/
 			return null;
 		}
 		instance = json.fromJson(reader, BackendConfig.class);
