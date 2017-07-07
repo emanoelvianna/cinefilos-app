@@ -26,8 +26,6 @@
     self.$onInit = onInit;
     self.cadastrar = cadastrar;
 
-
-
     function onInit() {
       FilmeComunicacaoFactory.listar().$promise.then(function (data) {
         self.filmes = data.filmes;

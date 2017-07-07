@@ -33,7 +33,7 @@
         var _promocao = promocao;
         var _notaFiscal = notaFiscal;
         var _necessidadeEspecial = necessidadeEspecial;
-        var _codSessao = codSessao;
+        var _cod_sessao = codSessao;
 
         /* metodos publicos */
         self.getValor = getValor;
@@ -64,7 +64,7 @@
         }
 
         function getCodSessao() {
-            return _codSessao;
+            return _cod_sessao;
         }
 
         function toJson() {
@@ -75,7 +75,7 @@
             json.promocao = _promocao;
             json.notaFiscal = _notaFiscal;
             json.necessidadeEspecial = _necessidadeEspecial;
-            json.codSessao = _codSessao;
+            json.cod_sessao = _cod_sessao;
 
             return JSON.stringify(json);
         }
