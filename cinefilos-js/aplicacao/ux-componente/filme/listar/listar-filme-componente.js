@@ -15,7 +15,7 @@
 
   function Controller($state, FilmeComunicacaoFactory) {
     var self = this;
-    self.filmes = ['show de vizinha', 'curtindo a vida adoidado'];
+    self.filmes;
 
     /* metodos publicos */
     self.$onInit = onInit;

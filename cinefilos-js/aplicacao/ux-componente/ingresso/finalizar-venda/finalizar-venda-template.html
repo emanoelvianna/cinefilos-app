@@ -2,7 +2,7 @@
     <md-input-container class="md-block" flex-gt-sm>
         <label>Filme escolhido</label>
         <md-select ng-model="filme">
-            <md-option ng-repeat="filme in $ctrl.filmes" value="{{filme}}">{{filme}}</md-option>
+            <md-option ng-repeat="filme in $ctrl.filmes" value="{{filme.titulo}}">{{filme.titulo}}</md-option>
         </md-select>
     </md-input-container>
 

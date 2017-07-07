@@ -14,18 +14,18 @@
         self.create = create;
         self.fromJsonObject = fromJsonObject;
 
-        function create(valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial) {
-            return new Ingresso(valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial);
+        function create(valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial, codSessao) {
+            return new Ingresso(valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial, codSessao);
         }
 
         function fromJsonObject(jsonObject) {
-            return new Ingresso(jsonObject.valor, jsonObject.numeroAssento, jsonObject.promocao, jsonObject.necessidadeEspecial)
+            return new Ingresso(jsonObject.valor, jsonObject.numeroAssento, jsonObject.promocao, jsonObject.necessidadeEspecial, jsonObject.codSessao)
         }
 
         return self;
     }
 
-    function Ingresso(valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial) {
+    function Ingresso(valor, numeroAssento, promocao, notaFiscal, necessidadeEspecial, codSessao) {
         var self = this;
 
         var _valor = valor;
@@ -33,6 +33,7 @@
         var _promocao = promocao;
         var _notaFiscal = notaFiscal;
         var _necessidadeEspecial = necessidadeEspecial;
+        var _codSessao = codSessao;
 
         /* metodos publicos */
         self.getValor = getValor;
@@ -62,6 +63,10 @@
             return _necessidadeEspecial;
         }
 
+        function getCodSessao() {
+            return _codSessao;
+        }
+
         function toJson() {
             var json = {};
 
@@ -70,6 +75,7 @@
             json.promocao = _promocao;
             json.notaFiscal = _notaFiscal;
             json.necessidadeEspecial = _necessidadeEspecial;
+            json.codSessao = _codSessao;
 
             return JSON.stringify(json);
         }

@@ -7,29 +7,36 @@
       templateUrl: 'aplicacao/ux-componente/ingresso/finalizar-venda/finalizar-venda-template.html',
       controller: Controller,
       bindings: {
-        numero: '<'
+        numero: '<',
+        sessao: '<'
       }
     });
 
   Controller.$inject = [
     'modelo.IngressoFactory',
-    'IngressoComunicacaoFactory'
+    'IngressoComunicacaoFactory',
+    'FilmeComunicacaoFactory'
   ];
 
-  function Controller(IngressoFactory, IngressoComunicacaoFactory) {
+  function Controller(IngressoFactory, IngressoComunicacaoFactory, FilmeComunicacaoFactory) {
     var self = this;
+    self.sessao = 0;
+    self.filmes;
 
+    self.$onInit = onInit;
     self.cadastrar = cadastrar;
 
-    self.filmes = [
-      'Show de vizinha',
-      'vivendo a vida adoidado'
-    ];
+
+
+    function onInit() {
+      FilmeComunicacaoFactory.listar().$promise.then(function (data) {
+        self.filmes = data.filmes;
+      });
+    }
 
     function cadastrar(ingresso) {
-      var novoIngresso = new IngressoFactory.create(ingresso.valor, self.numero, ingresso.promocao, ingresso.notaFiscal, ingresso.necessidadeEspecial);
+      var novoIngresso = new IngressoFactory.create(ingresso.valor, self.numero, ingresso.promocao, ingresso.notaFiscal, ingresso.necessidadeEspecial, self.sessao);
       IngressoComunicacaoFactory.cadastrar(novoIngresso.toJson());
-      console.log(novoIngresso);
     }
   }
 }());

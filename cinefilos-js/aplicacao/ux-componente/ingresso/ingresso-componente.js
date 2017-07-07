@@ -25,11 +25,12 @@
     self.quantidadePoltronas = quantidadePoltronas;
 
     function onInit() {
-      self.filme = $stateParams.filme;
+      
     }
 
     function comprar(numero) {
       $scope.numero = numero;
+      $scope.filme = $stateParams.filme;
       finalizarCompra();
     }
 
