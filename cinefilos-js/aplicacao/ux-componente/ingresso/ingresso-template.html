@@ -1,0 +1,10 @@
+<div layout="row" layout-padding layout-wrap layout-fill style="padding-bottom: 32px;" ng-cloak>
+    <div ng-repeat="i in $ctrl.quantidadePoltronas() track by $index">
+        <div class="padded" md-whiteframe="1" layout layout-align="center center">
+            <div layout="column">
+                <span layout layout-align="center center">Poltrona {{$index+1}}</span>
+                <md-button class="md-raised md-primary" ng-disabled="$ctrl.status" ng-click="$ctrl.comprar($index+1)">Comprar</md-button>
+            </div>
+        </div>
+    </div>
+</div>

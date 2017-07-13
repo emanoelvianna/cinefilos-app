@@ -1,0 +1,23 @@
+<md-whiteframe class="md-whiteframe-z4" flex flex-gt-md="33">
+    <h2>Cadastrar usuário</h2>
+    <form name="appForm">
+        <div layout="column">
+            <md-input-container>
+                <label>e-mail</label>
+                <input ng-model="usuario.login" name="email" required>
+            </md-input-container>
+            <md-input-container>
+                <label>senha</label>
+                <input ng-model="usuario.senha" name="senha" required type="password">
+            </md-input-container>
+            <md-input-container>
+                <label>confirmação de senha</label>
+                <input ng-model="usuario.confirmacao" name="confirmacao" required type="password">
+            </md-input-container>
+        </div>
+    </form>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary" ng-click="$ctrl.cadastrar(usuario)">Cadastrar</md-button>
+        <md-button class="md-raised">Cancelar</md-button>
+    </section>
+</md-whiteframe>

@@ -1,0 +1,218 @@
+CREATE TABLE notificacoes (
+	cod_notificacao SERIAL PRIMARY KEY,
+	via_email BIT(1) NOT NULL DEFAULT '0',
+	tela_de_acesso CHAR(1) NOT NULL DEFAULT '0',
+	mensagem VARCHAR(100)
+);
+
+
+CREATE TABLE usuarios_notificacoes (
+	cod_usuario INT,
+	cod_notificacao INT
+);
+
+
+CREATE TABLE usuarios (
+	cod_usuario SERIAL PRIMARY KEY,
+	login VARCHAR(20) NOT NULL,
+	senha VARCHAR(100) NOT NULL,
+	permissao INT NOT NULL DEFAULT 0
+);
+
+
+CREATE TABLE funcionarios (
+	cod_funcionario SERIAL PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	cargo VARCHAR(100) NOT NULL,
+	data_nascimento DATE,
+	estado VARCHAR(100),
+	cidade VARCHAR(100),
+	bairro VARCHAR(100),
+	logradouro VARCHAR(200),
+	sexo CHAR(1) NOT NULL,
+	telefone VARCHAR(15),
+	cod_usuario INT
+);
+
+
+CREATE TABLE alimentos_vendas (
+	quantidade INT NOT NULL,
+	cod_alimento INT NOT NULL,
+	cod_venda INT NOT NULL
+);
+
+
+CREATE TABLE alimentos (
+	cod_alimento SERIAL PRIMARY KEY,
+	nome VARCHAR(10) NOT NULL,
+	valor DECIMAL(10,2) NOT NULL,
+	categoria VARCHAR(100),
+	marca VARCHAR(100),
+	data_validade DATE NOT NULL,
+	data_fabricacao DATE NOT NULL
+);
+
+
+CREATE TABLE generos (
+	cod_genero SERIAL PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL
+);
+
+
+CREATE TABLE filmes_generos (
+	cod_filme INT,
+	cod_genero INT,
+	PRIMARY KEY(cod_filme, cod_genero)
+);
+
+
+CREATE TABLE idiomas (
+	cod_idioma SERIAL PRIMARY KEY,
+	nome VARCHAR(15)
+);
+
+CREATE TABLE filmes (
+	cod_filme SERIAL PRIMARY KEY,
+	titulo VARCHAR(100) NOT NULL,
+	data_lancamento DATE,
+	duracao TIME(6) NOT NULL,
+	diretor VARCHAR(100),
+	class_indicativa INT NOT NULL,
+	imagem_cartaz_path VARCHAR(30),
+	sinopse VARCHAR(100)
+);
+
+CREATE TABLE formas_pagamento (
+	cod_forma_pagamento SERIAL PRIMARY KEY,
+	nome VARCHAR(50)
+);
+
+
+CREATE TABLE vendas (
+	cod_venda SERIAL PRIMARY KEY,
+	data_venda DATE NOT NULL,
+	hora_venda TIME NOT NULL,
+	cod_forma_pagamento INT NOT NULL,
+	cod_funcionario INT,
+	cod_cliente INT,
+	nota_fiscal INT
+);
+
+
+CREATE TABLE ingressos_vendas (
+	cod_venda INT,
+	cod_ingresso INT,
+	PRIMARY KEY(cod_venda, cod_ingresso)
+);
+
+
+CREATE TABLE ingressos (
+	cod_ingresso SERIAL PRIMARY KEY,
+	valor NUMERIC(10,2) NOT NULL,
+	no_assento INT NOT NULL,
+	promocao CHAR(1),
+	necessidades_especiais CHAR(1),
+	cod_sessao INT NOT NULL,
+	UNIQUE(no_assento, cod_sessao)
+);
+
+
+CREATE TABLE clientes (
+	cod_cliente SERIAL PRIMARY KEY,
+	cpf VARCHAR(15) NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	data_nascimento DATE,
+	estado VARCHAR(100),
+	cidade VARCHAR(100),
+	bairro VARCHAR(100),
+	logradouro VARCHAR(200),
+	sexo CHAR(1) NOT NULL,
+	telefone VARCHAR(15),
+	cod_usuario INT
+);
+
+
+CREATE TABLE cartoes_credito (
+	cod_cliente INT NOT NULL,
+	numero INT NOT NULL,
+	data_validade DATE NOT NULL,
+	bandeira VARCHAR(100),
+	cvv INT NOT NULL,
+	PRIMARY KEY(cod_cliente, numero)
+);
+
+
+CREATE TABLE sessoes (
+	cod_sessao SERIAL PRIMARY KEY,
+	horario_sessao TIME(6) NOT NULL,
+	data_sessao DATE NOT NULL,
+	cod_filme INT NOT NULL,
+	cod_sala INT NOT NULL,
+	cod_idioma INT NOT NULL,
+	legendado INT
+);
+
+
+CREATE TABLE salas (
+	cod_sala SERIAL PRIMARY KEY,
+	numero INT NOT NULL,
+	lugares INT NOT NULL,
+	status CHAR(1),
+	fileiras INT
+);
+
+
+--
+-- CONSTRAINTS
+--
+
+ALTER TABLE usuarios_notificacoes ADD CONSTRAINT fk_usu_not_cod_usuario
+FOREIGN KEY (cod_usuario) REFERENCES usuarios (cod_usuario);
+
+ALTER TABLE usuarios_notificacoes ADD CONSTRAINT fk_usu_not_cod_notificacao
+FOREIGN KEY (cod_notificacao) REFERENCES notificacoes (cod_notificacao);
+
+ALTER TABLE funcionarios ADD CONSTRAINT fk_funcionario_cod_usuario
+FOREIGN KEY (cod_usuario) REFERENCES usuarios (cod_usuario);
+
+ALTER TABLE alimentos_vendas ADD CONSTRAINT fk_ali_ven_cod_alimento
+FOREIGN KEY (cod_alimento) REFERENCES alimentos (cod_alimento);
+
+ALTER TABLE alimentos_vendas ADD CONSTRAINT fk_ali_ven_cod_venda
+FOREIGN KEY (cod_venda) REFERENCES vendas (cod_venda);
+
+ALTER TABLE filmes_generos ADD CONSTRAINT fk_fil_gen_cod_filme
+FOREIGN KEY (cod_filme) REFERENCES filmes (cod_filme);
+
+ALTER TABLE filmes_generos ADD CONSTRAINT fk_fil_gen_cod_genero
+FOREIGN KEY (cod_genero) REFERENCES generos (cod_genero);
+
+ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_funcionario
+FOREIGN KEY (cod_funcionario) REFERENCES funcionarios (cod_funcionario);
+
+ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_cliente
+FOREIGN KEY (cod_cliente) REFERENCES clientes (cod_cliente);
+
+ALTER TABLE vendas ADD CONSTRAINT fk_venda_cod_forma_pagamento
+FOREIGN KEY (cod_forma_pagamento) REFERENCES formas_pagamento (cod_forma_pagamento);
+
+ALTER TABLE ingressos_vendas ADD CONSTRAINT fk_ingr_venda_cod_venda
+FOREIGN KEY (cod_venda) REFERENCES vendas (cod_venda);
+
+ALTER TABLE ingressos_vendas ADD CONSTRAINT fk_ingr_venda_cod_ingresso
+FOREIGN KEY (cod_ingresso) REFERENCES ingressos (cod_ingresso);
+
+ALTER TABLE clientes ADD CONSTRAINT fk_cliente_cod_usuario
+FOREIGN KEY (cod_usuario) REFERENCES usuarios (cod_usuario);
+
+ALTER TABLE ingressos ADD CONSTRAINT fk_ingresso_cod_sessao
+FOREIGN KEY (cod_sessao) REFERENCES sessoes (cod_sessao);
+
+ALTER TABLE sessoes ADD CONSTRAINT fk_sessao_cod_filme
+FOREIGN KEY (cod_filme) REFERENCES filmes (cod_filme);
+
+ALTER TABLE sessoes ADD CONSTRAINT fk_sessao_cod_sala
+FOREIGN KEY (cod_sala) REFERENCES salas (cod_sala);
+
+ALTER TABLE sessoes ADD CONSTRAINT fk_sessao_cod_idioma
+FOREIGN KEY (cod_idioma) REFERENCES idiomas (cod_idioma);

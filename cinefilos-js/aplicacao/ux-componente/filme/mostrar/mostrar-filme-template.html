@@ -1,0 +1,36 @@
+<div ng-cloak>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="30" layout="column">
+            <md-card md-theme-watch>
+                <img ng-src="{{$ctrl.imagePath}}" class="md-card-image">
+            </md-card>
+        </div>
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{$ctrl.filme.titulo}}</span>
+                        <span class="md-subhead">Data de lançamento: {{$ctrl.filme.dataLancamento}}</span>
+                        <span class="md-subhead">Direção: {{$ctrl.filme.diretor}}</span>
+                        <span class="md-subhead">Duração: {{$ctrl.filme.duracao}}</span>
+                        <span class="md-subhead">Classificação Indicativa: {{$ctrl.filme.classificacaoIndicativa}}</span>
+                        <p></p>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="item in $ctrl.sessoes">
+                        <div class="md-list-item-text">
+                            <h3>Programação: </h3>
+                            <h3>Horário: {{item.horario}}</h3>
+                            <h3>Data: {{item.data}}</h3>
+                        </div>
+                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                            <md-button class="md-raised md-primary" ng-click="$ctrl.comprar()">Comprar ingresso</md-button>
+                        </section>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </div>
+    </md-content>
+</div>

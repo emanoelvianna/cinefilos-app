@@ -1,0 +1,42 @@
+<md-content layout-padding>
+    <h2>Cadastrar filme</h2>
+    <md-input-container class="md-block">
+        <label>Titulo</label>
+        <input ng-model="filme.titulo">
+    </md-input-container>
+
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block">
+            <label>Data de lançamento</label>
+            <md-datepicker ng-model="filme.dataLancamento"></md-datepicker>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Duração</label>
+            <!-- <input type="time" ng-model="filme.duracao" aria-label="Tempo" /> -->
+            <input ng-model="filme.duracao">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Diretor</label>
+            <input ng-model="filme.diretor">
+        </md-input-container>
+    </div>
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block">
+            <label>Classificação Indicativa</label>
+            <input ng-model="filme.classificacaoIndicativa">
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Genero</label>
+            <md-select ng-model="filme.genero">
+                <md-option ng-repeat="genero in $ctrl.generos" value="{{genero.nome}}">
+                    {{genero.nome}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary" ng-click="$ctrl.cadastrar(filme)">Cadastrar</md-button>
+        <md-button class="md-raised">Cancelar</md-button>
+    </section>
+</md-content>
