@@ -1,7 +1,0 @@
-{
-    "codigoSessao": 1, /* deve ser criado pelo back-end */
-    "sala": 10,
-    "hora": "18:00",
-    "codigoFilme": 10, /* provavelmente vou usar um select em tela, ou seja informação buscada da base */
-    "codigoSala": 2 /* provavelmente vou usar um select em tela, ou seja informação buscada da base */
-}
